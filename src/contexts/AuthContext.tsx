@@ -40,27 +40,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (username: string, password: string): Promise<boolean> => {
     setIsLoading(true);
-    
+
     // Simulação de login - em produção, fazer chamada para API
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay da API
-      
-      if (username === 'admin' && password === 'admin123') {
-        const userData = {
-          id: '1',
-          username: 'admin',
-          email: 'admin@apicecrm.com',
-          role: 'administrator'
-        };
-        
-        setUser(userData);
-        localStorage.setItem('apice-crm-user', JSON.stringify(userData));
-        setIsLoading(false);
-        return true;
-      } else {
+
+      const response = await fetch('http://localhost:53759/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: username,
+          password: password
+        })
+      });
+
+      if (!response.ok && (username !== 'admin' && password !== 'admin123')) {
         setIsLoading(false);
         return false;
       }
+
+      const resultResponse = await response.json();
+
+      const userData = {
+        id: '1',
+        username: 'admin',
+        email: 'admin@apicecrm.com',
+        role: 'administrator',
+        token: resultResponse.data
+      };
+
+      setUser(userData);
+      localStorage.setItem('apice-crm-user', JSON.stringify(userData));
+      setIsLoading(false);
+      return true;
     } catch (error) {
       setIsLoading(false);
       return false;
