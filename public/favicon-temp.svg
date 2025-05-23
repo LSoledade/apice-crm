@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="8" fill="#007BFF"/>
+  <path d="M13 14L24 10L35 14V22C35 28.0751 30.5751 33.6667 24 36C17.4249 33.6667 13 28.0751 13 22V14Z" fill="white"/>
+  <path d="M20 22L23 25L28 20" stroke="#007BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="24" y="37" font-family="Arial" font-weight="bold" font-size="8" fill="#007BFF" text-anchor="middle">ÁPICE</text>
+</svg>
