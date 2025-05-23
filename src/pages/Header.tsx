@@ -1,29 +1,19 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Bell, Search, Settings, LogOut, User } from 'lucide-react';
+import { Bell, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
-const Header = () => {
-  const { user, logout } = useAuth();
+interface HeaderProps {
+  sidebarCollapsed?: boolean;
+}
 
-  const handleLogout = () => {
-    logout();
-    window.location.href = '/';
-  };
+const Header: React.FC<HeaderProps> = ({ sidebarCollapsed = false }) => {
+  const { user } = useAuth();
 
   return (
-    <header className="bg-white border-b border-gray-200 px-6 py-3">
+    <header className={`bg-white/95 backdrop-blur-sm shadow-sm px-6 py-3 fixed top-0 right-0 left-0 ${sidebarCollapsed ? 'ml-16' : 'ml-64'} z-20 transition-all duration-300`}>
       <div className="flex items-center justify-between">
         {/* Search */}
         <div className="flex-1 max-w-md">
@@ -31,7 +21,7 @@ const Header = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <Input
               placeholder="Buscar leads, campanhas, clientes..."
-              className="pl-10 bg-gray-50 border-gray-200"
+              className="pl-10 bg-gray-50/80 border-gray-200 focus-visible:ring-crm-primary/30 transition-all"
             />
           </div>
         </div>
@@ -39,51 +29,18 @@ const Header = () => {
         {/* Actions */}
         <div className="flex items-center space-x-4">
           {/* Notifications */}
-          <Button variant="ghost" size="sm" className="relative">
+          <Button variant="ghost" size="sm" className="relative hover:bg-gray-100 transition-colors">
             <Bell className="h-4 w-4" />
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+            <span className="absolute -top-1 -right-1 bg-crm-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center transition-all">
               3
             </span>
           </Button>
 
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-2 h-auto p-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-crm-primary text-white">
-                    {user?.username?.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="text-left">
-                  <p className="text-sm font-medium">{user?.username}</p>
-                  <p className="text-xs text-gray-500">{user?.email}</p>
-                </div>
-              </Button>
-            </DropdownMenuTrigger>
-            
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>Minha Conta</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                <span>Perfil</span>
-              </DropdownMenuItem>
-              
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Configurações</span>
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator />
-              
-              <DropdownMenuItem onClick={handleLogout} className="text-red-600">
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Sair</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Data e Boas-vindas */}
+          <div className="text-right hidden sm:block">
+            <p className="text-sm font-medium text-gray-900">Olá, {user?.username}</p>
+            <p className="text-xs text-gray-500">{new Date().toLocaleDateString('pt-BR', {weekday: 'long', day: 'numeric', month: 'long'})}</p>
+          </div>
         </div>
       </div>
     </header>

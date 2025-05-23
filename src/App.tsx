@@ -12,6 +12,28 @@ import Layout from "@/pages/Layout";
 import ProtectedRoute from "@/pages/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 
+// Importação dos componentes de Marketing
+import Marketing from "@/pages/marketing/Marketing";
+import Analytics from "@/pages/marketing/Analytics";
+import Agenda from "@/pages/marketing/Agenda";
+import Leads from "@/pages/marketing/Leads";
+import Campanhas from "@/pages/marketing/Campanhas";
+
+// Importação dos componentes do Financeiro
+import Financeiro from "@/pages/financeiro/Financeiro";
+import Faturamento from "@/pages/financeiro/Faturamento";
+import Pagamentos from "@/pages/financeiro/Pagamentos";
+import AgendaFinanceira from "@/pages/financeiro/AgendaFinanceira";
+
+// Importação dos componentes de Configurações
+import Configuracoes from "@/pages/configuracoes/Configuracoes";
+import ConfiguracoesGeral from "@/pages/configuracoes/Geral";
+import Usuarios from "@/pages/configuracoes/Usuarios";
+import Dominios from "@/pages/configuracoes/Dominios";
+import Integracoes from "@/pages/configuracoes/Integracoes";
+import Permissoes from "@/pages/configuracoes/Permissoes";
+import Seguranca from "@/pages/configuracoes/Seguranca";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,15 +54,18 @@ const App = () => (
                   <Dashboard />
                 </Layout>
               </ProtectedRoute>
-            } />
-            
-            <Route path="/configuracoes" element={
+            } />            <Route path="/configuracoes" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Configurações</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Configuracoes />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/configuracoes/geral" element={
+              <ProtectedRoute>
+                <Layout>
+                  <ConfiguracoesGeral />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -48,10 +73,7 @@ const App = () => (
             <Route path="/configuracoes/usuarios" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Gestão de Usuários</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Usuarios />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -59,10 +81,31 @@ const App = () => (
             <Route path="/configuracoes/permissoes" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Gestão de Permissões</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Permissoes />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/configuracoes/dominios" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Dominios />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/configuracoes/integracoes" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Integracoes />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/configuracoes/seguranca" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Seguranca />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -70,10 +113,15 @@ const App = () => (
             <Route path="/financeiro" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Financeiro</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Financeiro />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/financeiro/faturamento" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Faturamento />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -81,10 +129,7 @@ const App = () => (
             <Route path="/financeiro/pagamentos" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Gestão de Pagamentos</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Pagamentos />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -92,21 +137,14 @@ const App = () => (
             <Route path="/financeiro/agenda" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Agenda de Pagamentos</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <AgendaFinanceira />
                 </Layout>
               </ProtectedRoute>
             } />
-            
-            <Route path="/marketing" element={
+              <Route path="/marketing" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Marketing</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Marketing />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -114,10 +152,7 @@ const App = () => (
             <Route path="/marketing/analytics" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Analytics</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Analytics />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -125,10 +160,7 @@ const App = () => (
             <Route path="/marketing/agenda" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Agenda de Marketing</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Agenda />
                 </Layout>
               </ProtectedRoute>
             } />
@@ -136,21 +168,14 @@ const App = () => (
             <Route path="/marketing/leads" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Gestão de Leads</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Leads />
                 </Layout>
               </ProtectedRoute>
             } />
-            
-            <Route path="/marketing/campanhas" element={
+              <Route path="/marketing/campanhas" element={
               <ProtectedRoute>
                 <Layout>
-                  <div className="p-6">
-                    <h1 className="text-2xl font-bold">Rastreamento de Campanhas</h1>
-                    <p className="text-gray-600 mt-2">Módulo em desenvolvimento</p>
-                  </div>
+                  <Campanhas />
                 </Layout>
               </ProtectedRoute>
             } />

@@ -11,16 +11,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-50 flex">
       <Sidebar 
         collapsed={sidebarCollapsed} 
         onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} 
       />
       
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header />
-        <main className="flex-1 overflow-auto p-6">
-          <div className="bg-white rounded-lg shadow-sm h-full overflow-auto">
+      <div className={`flex-1 overflow-hidden transition-all duration-300 ${sidebarCollapsed ? 'ml-16' : 'ml-64'}`}>
+        <Header sidebarCollapsed={sidebarCollapsed} />
+        <main className="pt-16 p-5 h-screen overflow-auto">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 min-h-[calc(100vh-7rem)]">
             {children}
           </div>
         </main>
