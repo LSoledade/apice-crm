@@ -3,6 +3,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
+import { isTokenValid, logout } from '@/auth/AuthService';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -23,6 +24,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   }
 
   if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!user || !isTokenValid(user.token)) {
+    logout(); // limpa se o token estiver expirado
     return <Navigate to="/login" replace />;
   }
 
