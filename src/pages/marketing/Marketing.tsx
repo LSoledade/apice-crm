@@ -302,9 +302,7 @@ const Marketing = () => {
                   <Progress value={55} className="h-2 mt-2" />
                 </div>
               </CardContent>
-            </Card>
-
-            <Card className="border-0 shadow-lg">
+            </Card>            <Card className="border-0 shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="flex items-center">
@@ -329,6 +327,37 @@ const Marketing = () => {
                     <span className="font-medium text-green-600">780</span>
                   </div>
                   <Progress value={83} className="h-2 mt-2" />
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="border-0 shadow-lg">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center">
+                    <MessageSquare className="mr-2 h-5 w-5 text-blue-600" />
+                    Mensagens
+                  </CardTitle>
+                  <Badge className="bg-blue-100 text-blue-800">Nova</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">WhatsApp</span>
+                    <span className="font-medium">32 conversas</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Instagram</span>
+                    <span className="font-medium">18 conversas</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Não lidas</span>
+                    <span className="font-medium text-amber-600">5</span>
+                  </div>
+                  <Button variant="default" size="sm" className="w-full mt-2" asChild>
+                    <a href="/marketing/mensagens">Acessar Mensagens</a>
+                  </Button>
                 </div>
               </CardContent>
             </Card>

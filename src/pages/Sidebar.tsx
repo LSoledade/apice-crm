@@ -16,7 +16,8 @@ import {
   LogOut,
   User,
   Globe,
-  Lock
+  Lock,
+  MessageSquare
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -54,8 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       icon: BarChart3,
       href: '/dashboard',
       description: 'Visão geral'
-    },
-    {
+    },    {
       title: 'Marketing',
       icon: TrendingUp,
       href: '/marketing',
@@ -64,7 +64,8 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         { title: 'Analytics', href: '/marketing/analytics', icon: BarChart3 },
         { title: 'Agenda', href: '/marketing/agenda', icon: Calendar },
         { title: 'Leads', href: '/marketing/leads', icon: Target },
-        { title: 'Campanhas', href: '/marketing/campanhas', icon: TrendingUp }
+        { title: 'Campanhas', href: '/marketing/campanhas', icon: TrendingUp },
+        { title: 'Mensagens', href: '/marketing/mensagens', icon: MessageSquare }
       ]
     },
     {
@@ -98,50 +99,59 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const renderMenuItem = (item: MenuItem) => {
     const active = isActive(item.href);
     const isOpen = openMenus.includes(item.href);
-    
-    if (item.children) {
+      if (item.children) {
       return (
         <div key={item.href}>
           <Collapsible 
             open={collapsed ? false : isOpen} 
             className="w-full"
           >
-            <CollapsibleTrigger asChild>
-              <div
-                onClick={() => !collapsed && toggleMenu(item.href)}
+            <div className="flex items-center">
+              <Link
+                to={item.href}
                 className={cn(
-                  "flex items-center justify-between px-3 py-2 rounded-md cursor-pointer mb-1",
+                  "flex items-center flex-1 px-3 py-2 rounded-md text-sm transition-colors mb-1",
                   active
-                    ? "bg-crm-primary/10 text-crm-primary"
-                    : "text-gray-400 hover:bg-gray-800/40 hover:text-gray-100"
+                    ? "bg-crm-primary/10 text-crm-primary font-medium"
+                    : "text-gray-400 hover:text-gray-100 hover:bg-gray-800/40"
                 )}
               >
-                <div className="flex items-center">
-                  <TooltipProvider delayDuration={100}>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <div className="flex items-center justify-center">
-                          <item.icon className={cn("h-5 w-5 transition-colors duration-200", active && "text-crm-primary")} />
-                        </div>
-                      </TooltipTrigger>
-                      {collapsed && <TooltipContent side="right" sideOffset={5}>{item.title}</TooltipContent>}
-                    </Tooltip>
-                  </TooltipProvider>
-                  
-                  <span className={cn(
-                    "ml-3 text-sm transition-all duration-200 ease-in-out",
-                    collapsed ? "w-0 opacity-0" : "opacity-100"
-                  )}>{item.title}</span>
-                </div>
+                <TooltipProvider delayDuration={100}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex items-center justify-center">
+                        <item.icon className={cn("h-5 w-5 transition-colors duration-200", active && "text-crm-primary")} />
+                      </div>
+                    </TooltipTrigger>
+                    {collapsed && <TooltipContent side="right" sideOffset={5}>{item.title}</TooltipContent>}
+                  </Tooltip>
+                </TooltipProvider>
                 
-                {!collapsed && (
-                  <ChevronRight className={cn(
-                    "h-4 w-4 transition-transform",
-                    isOpen && "transform rotate-90"
-                  )} />
-                )}
-              </div>
-            </CollapsibleTrigger>
+                <span className={cn(
+                  "ml-3 transition-all duration-200 ease-in-out",
+                  collapsed ? "w-0 opacity-0" : "opacity-100"
+                )}>{item.title}</span>
+              </Link>
+              
+              {!collapsed && (
+                <CollapsibleTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="p-1 h-8 w-8 text-gray-400 hover:text-gray-100 hover:bg-gray-800/40"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleMenu(item.href);
+                    }}
+                  >
+                    <ChevronRight className={cn(
+                      "h-4 w-4 transition-transform",
+                      isOpen && "transform rotate-90"
+                    )} />
+                  </Button>
+                </CollapsibleTrigger>
+              )}
+            </div>
             
             <CollapsibleContent className="ml-1 space-y-0.5">
               {item.children.map((child: MenuItem) => (

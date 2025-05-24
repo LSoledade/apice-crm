@@ -18,6 +18,7 @@ import Analytics from "@/pages/marketing/Analytics";
 import Agenda from "@/pages/marketing/Agenda";
 import Leads from "@/pages/marketing/Leads";
 import Campanhas from "@/pages/marketing/Campanhas";
+import Mensagens from "@/pages/marketing/Mensagens";
 
 // Importação dos componentes do Financeiro
 import Financeiro from "@/pages/financeiro/Financeiro";
@@ -34,6 +35,9 @@ import Integracoes from "@/pages/configuracoes/Integracoes";
 import Permissoes from "@/pages/configuracoes/Permissoes";
 import Seguranca from "@/pages/configuracoes/Seguranca";
 
+// Importação do site da Combinat
+import CombinatSite from "@/pages/sitecombinat/CombinatSite";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -42,10 +46,12 @@ const App = () => (
       <Toaster />
       <Sonner />
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
+        <BrowserRouter>          <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
+            
+            {/* Site da Combinat */}
+            <Route path="/combinat" element={<CombinatSite />} />
             
             {/* Rotas protegidas */}
             <Route path="/dashboard" element={
@@ -171,11 +177,18 @@ const App = () => (
                   <Leads />
                 </Layout>
               </ProtectedRoute>
-            } />
-              <Route path="/marketing/campanhas" element={
+            } />            <Route path="/marketing/campanhas" element={
               <ProtectedRoute>
                 <Layout>
                   <Campanhas />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            
+            <Route path="/marketing/mensagens" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Mensagens />
                 </Layout>
               </ProtectedRoute>
             } />
