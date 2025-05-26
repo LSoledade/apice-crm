@@ -31,32 +31,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Simulação de login - em produção, fazer chamada para API
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay da API
+      //await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay da API
 
-     // const response = await fetch('http://localhost:53759/api/v1/auth/login', {
-     // method: 'POST',
-     // headers: {
-     //   'Content-Type': 'application/json'
-     // },
-      // body: JSON.stringify({
-      // email: username,
-      //  password: password
-      // })
-      //});
+     const response = await fetch('http://localhost:53759/api/v1/auth/login', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+      body: JSON.stringify({
+      email: username,
+       password: password
+      })
+      });
 
-      // if (!response.ok && (username !== 'admin' && password !== 'admin123')) {
-      //   setIsLoading(false);
-      //   return false;
-      // }
+      if (!response.ok ) {
+        setIsLoading(false);
+        return false;
+      }
 
-      // const resultResponse = await response.json();
+      const resultResponse = await response.json();
 
       const userData = {
         id: '1',
         username: 'admin',
         email: 'admin@apicecrm.com',
         role: 'administrator',
-        token: ''
+        token: resultResponse.data
       };
 
       setUser(userData);

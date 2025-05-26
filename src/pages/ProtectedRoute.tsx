@@ -27,10 +27,10 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  // if (!user || !isTokenValid(user.token)) {
-  //   logout(); // limpa se o token estiver expirado
-  //   return <Navigate to="/login" replace />;
-  // }
+  if (!user || !isTokenValid(user.token)) {
+    logout(); // limpa se o token estiver expirado
+    return <Navigate to="/login" replace />;
+  }
 
   return <>{children}</>;
 };

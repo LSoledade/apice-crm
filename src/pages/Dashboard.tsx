@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import WeatherWidget from '@/components/WeatherWidget';
 import { 
   BarChart3, 
   TrendingUp, 
@@ -125,9 +125,9 @@ const Dashboard = () => {
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Sales Chart */}
-        <Card className="border-0 shadow-lg">
+        <Card className="lg:col-span-2 border-0 shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center">
               <BarChart3 className="mr-2 h-5 w-5" />
@@ -149,6 +149,16 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
+        {/* Weather Widget */}
+        <WeatherWidget 
+          location="São Paulo" 
+          showForecast={true}
+          className="lg:col-span-1"
+        />
+      </div>
+
+      {/* Lead Sources Chart */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Lead Sources */}
         <Card className="border-0 shadow-lg">
           <CardHeader>
@@ -175,6 +185,22 @@ const Dashboard = () => {
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
+          </CardContent>
+        </Card>
+
+        {/* Additional Chart placeholder - you can add more charts here */}
+        <Card className="border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle>Performance Semanal</CardTitle>
+            <CardDescription>Tendência dos últimos 7 dias</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-center h-[300px] text-muted-foreground">
+              <div className="text-center">
+                <BarChart3 className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                <p>Gráfico em desenvolvimento</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
