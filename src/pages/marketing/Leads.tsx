@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,7 +30,7 @@ import {
   Clock,
   Tag
 } from 'lucide-react';
-
+import { getLeads } from '@/services/leadService';
 // Interface para os dados de lead
 interface Lead {
   id: string;
@@ -195,6 +195,19 @@ const Leads = () => {
       lastContact: '2025-05-20'
     }
   ]);
+ const loadLeads = async () => {
+    try {
+      const fetchedLeads = await getLeads();
+      setLeads(fetchedLeads);
+    } catch (error) {
+      console.error('Erro ao carregar leads:', error);
+    }
+  };
+
+
+  useEffect(() => {
+    loadLeads();
+  }, []);
 
   // Funções para manipulação de leads
   const toggleLeadSelection = (id: string) => {
