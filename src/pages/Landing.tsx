@@ -1,12 +1,14 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Users, BarChart3, Target, Zap, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAnalytics } from '@/hooks/use-analytics';
 
 const Landing = () => {
+  const { trackEvent } = useAnalytics();
+  
   const features = [
     {
       icon: <Target className="h-6 w-6" />,

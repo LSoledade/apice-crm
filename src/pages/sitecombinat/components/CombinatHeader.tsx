@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Link } from 'react-router-dom';
 
 const CombinatHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,15 +96,17 @@ const CombinatHeader = () => {
                 </a>
               )
             ))}
-          </nav>
-
-          {/* CTA Buttons */}
+          </nav>          {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" className="text-slate-600 hover:text-blue-600 hover:bg-blue-50/80 font-medium">
-              Entrar
+            <Button variant="ghost" className="text-slate-600 hover:text-blue-600 hover:bg-blue-50/80 font-medium" asChild>
+              <Link to="/login">
+                Entrar
+              </Link>
             </Button>
-            <Button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300">
-              Começar Agora
+            <Button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300" asChild>
+              <Link to="/crm">
+                Começar Agora
+              </Link>
             </Button>
           </div>
 
@@ -154,13 +157,16 @@ const CombinatHeader = () => {
                     </a>
                   )}
                 </div>
-              ))}
-              <div className="pt-6 space-y-3">
-                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
-                  Entrar
+              ))}              <div className="pt-6 space-y-3">
+                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50" asChild>
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                    Entrar
+                  </Link>
                 </Button>
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white">
-                  Começar Agora
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white" asChild>
+                  <Link to="/crm" onClick={() => setIsMenuOpen(false)}>
+                    Começar Agora
+                  </Link>
                 </Button>
               </div>
             </div>

@@ -145,16 +145,7 @@ const Login = () => {
                     Fale Conosco
                   </Button>
                 </div>
-              </div>
-            </div>
-            
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm text-blue-800 font-medium mb-2">Acesso de demonstração:</p>
-              <p className="text-xs text-blue-600">
-                <strong>Usuário:</strong> admin<br />
-                <strong>Senha:</strong> admin123
-              </p>
-            </div>
+              </div>            </div>
           </CardContent>
         </Card>
       </div>

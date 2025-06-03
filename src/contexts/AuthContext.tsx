@@ -1,7 +1,7 @@
-
 import { AuthContextType } from '@/interfaces/AuthContextType';
 import { User } from '@/interfaces/User';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import analyticsService from '@/services/analyticsService';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -21,7 +21,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Verificar se há usuário logado no localStorage
     const savedUser = localStorage.getItem('apice-crm-user');
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      const userData = JSON.parse(savedUser);
+      setUser(userData);
+      
+      // Identificar o usuário no Google Analytics quando ele está já logado
+      analyticsService.setUser(userData.id);
     }
     setIsLoading(false);
   }, []);
@@ -61,15 +65,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       setUser(userData);
       localStorage.setItem('apice-crm-user', JSON.stringify(userData));
+      
+      // Rastrear evento de login e identificar usuário no Google Analytics
+      analyticsService.setUser(userData.id);
+      analyticsService.event('User', 'Login', userData.username);
+      
       setIsLoading(false);
       return true;
     } catch (error) {
+      console.error('Erro no login:', error);
       setIsLoading(false);
       return false;
     }
   };
 
   const logout = () => {
+    // Rastrear evento de logout antes de remover o usuário
+    if (user) {
+      analyticsService.event('User', 'Logout', user.username);
+    }
+    
     setUser(null);
     localStorage.removeItem('apice-crm-user');
   };
