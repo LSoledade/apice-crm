@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import analyticsService from '@/services/analyticsService';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const apiUrl = import.meta.env.VITE_BACKEND_API || 'https://combinat.com.br/api/api/v1/';// Para Vite
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -37,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       //await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay da API
 
-     const response = await fetch('http://localhost:53759/api/v1/auth/login', {
+     const response = await fetch(apiUrl + 'auth/login', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json'
