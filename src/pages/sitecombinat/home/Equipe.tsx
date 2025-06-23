@@ -26,7 +26,7 @@ const Equipe = () => {  const fundadores = [
       }
     }
   ];  return (
-    <section id="sobre" className="py-24" style={{ backgroundColor: '#303030' }}>
+    <section id="equipe" className="py-12" style={{ backgroundColor: '#303030' }}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">        
         {/* Header Section */}
         <div className="text-center max-w-4xl mx-auto mb-16">
@@ -38,6 +38,11 @@ const Equipe = () => {  const fundadores = [
               Combinat
             </span>
           </h2>
+        </div>{/* CTA para conhecer os fundadores */}
+        <div className="md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto text-center">
+          <Button size="lg" className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] text-white hover:from-[#d12c27] hover:to-[#e8832f] px-8 py-4 text-lg font-semibold border-0 transition-all duration-300 rounded-full">
+            CONHEÇA OS FUNDADORES
+          </Button>
         </div>        {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-5xl mx-auto">
           {fundadores.map((pessoa, index) => (
@@ -90,12 +95,7 @@ const Equipe = () => {  const fundadores = [
               </div>
             </div>
           ))}
-        </div>        {/* CTA para conhecer os fundadores */}
-        <div className="text-center">
-          <Button size="lg" className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] text-white hover:from-[#d12c27] hover:to-[#e8832f] px-8 py-4 text-lg font-semibold border-0 transition-all duration-300 rounded-full">
-            CONHEÇA OS FUNDADORES
-          </Button>
-        </div>
+        </div>        
       </div>
     </section>
   );

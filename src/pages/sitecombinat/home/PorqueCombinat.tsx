@@ -43,7 +43,7 @@ const PorqueCombinat = () => {  const featuresData = [
   ];
 
   return (
-    <section id="porque-combinat" className="py-24 relative">
+    <section id="porque-combinat" className="py-12 relative">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">        {/* Header Section */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <Badge variant="outline" className="combinat-text px-5 py-2 bg-gradient-to-r from-[#E9342E]/10 to-[#FF9334]/10 border-[#E9342E]/20 text-[#E9342E] rounded-full shadow-sm mb-6">
