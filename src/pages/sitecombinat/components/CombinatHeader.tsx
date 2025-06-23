@@ -1,177 +1,372 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Menu, MoveRight, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CombinatHeader = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect
+  // Detectar scroll para alterar aparência do header
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const scrollTop = window.scrollY;
+      const shouldBeScrolled = scrollTop > 30; // Muda após 30px de scroll
+      
+      if (shouldBeScrolled !== isScrolled) {
+        setIsScrolled(shouldBeScrolled);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Adicionar event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Verificar posição inicial
+    handleScroll();
+
+    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isScrolled]);
 
   const navigationItems = [
-    { name: 'Home', href: '#home' },
-    { 
-      name: 'Por que Combinat?', 
-      href: '#porque-combinat',
-      hasDropdown: true,
-      dropdownItems: [
-        { name: 'Nossa Missão', href: '#missao' },
-        { name: 'Diferenciais', href: '#diferenciais' },
-        { name: 'Cultura', href: '#cultura' },
-      ]
+    {
+      title: "Home",
+      href: "#home",
+      description: "",
     },
-    { 
-      name: 'Soluções', 
-      href: '#solucoes', 
-      hasDropdown: true,
-      dropdownItems: [
-        { name: 'Desenvolvimento', href: '#desenvolvimento' },
-        { name: 'Marketing Digital', href: '#marketing' },
-        { name: 'Consultoria', href: '#consultoria' },
-      ]
+    {
+      title: "Por que Combinat?",
+      description: "Conheça nossos diferenciais e metodologias.",
+      items: [
+        {
+          title: "Nossa História",
+          href: "#historia",
+        },
+        {
+          title: "Metodologia",
+          href: "#metodologia",
+        },
+        {
+          title: "Resultados",
+          href: "#resultados",
+        },
+        {
+          title: "Depoimentos",
+          href: "#depoimentos",
+        },
+      ],
     },
-    { name: 'Equipe', href: '#equipe' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contato', href: '#contato' }
-  ];
-
-  return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md' : 'bg-transparent backdrop-blur-sm'
+    {
+      title: "Soluções",
+      description: "Tecnologia e marketing para transformar seu negócio.",
+      items: [
+        {
+          title: "Marketing Digital",
+          href: "#marketing-digital",
+        },
+        {
+          title: "Desenvolvimento Web",
+          href: "#desenvolvimento",
+        },
+        {
+          title: "CRM & Automação",
+          href: "#crm-automacao",
+        },
+        {
+          title: "Consultoria",
+          href: "#consultoria",
+        },
+      ],
+    },
+    {
+      title: "Equipe",
+      href: "#equipe",
+      description: "",
+    },
+  ];  return (
+    <header className={`w-full z-50 fixed top-0 left-0 transition-all duration-500 ease-out ${
+      isScrolled 
+        ? 'bg-background/90 backdrop-blur-md border-b border-border/30 shadow-lg' 
+        : 'bg-transparent border-b border-transparent'
     }`}>
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="w-10 h-10 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group">
-              <span className="text-white font-bold text-xl group-hover:scale-110 transition-transform">C</span>
+      <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center px-4 md:px-6 justify-between lg:justify-normal">
+        {/* Desktop Navigation */}        <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
+          <NavigationMenu className="flex justify-start items-start">
+            <NavigationMenuList className="flex justify-start gap-4 flex-row">
+              {navigationItems.map((item) => (
+                <NavigationMenuItem key={item.title}>
+                  {item.href ? (
+                    <>
+                      <NavigationMenuLink href={item.href}>
+                        <Button 
+                          variant="ghost" 
+                          className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors duration-300 ${
+                            isScrolled 
+                              ? 'text-foreground hover:text-[#E9342E]' 
+                              : 'text-white hover:text-[#FF9334]'
+                          }`}
+                        >
+                          {item.title}
+                        </Button>
+                      </NavigationMenuLink>
+                    </>
+                  ) : (
+                    <>
+                      <NavigationMenuTrigger className={`font-medium text-sm bg-transparent hover:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent transition-colors duration-300 ${
+                        isScrolled 
+                          ? 'text-foreground hover:text-[#E9342E]' 
+                          : 'text-white hover:text-[#FF9334]'
+                      }`}>
+                        {item.title}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className={`!w-[450px] p-4 transition-all duration-300 ${
+                        isScrolled
+                          ? item.title === 'Por que Combinat?' 
+                            ? 'bg-red-50 dark:bg-red-900/50' 
+                            : item.title === 'Soluções' 
+                              ? 'bg-orange-50 dark:bg-orange-900/50' 
+                              : 'bg-background/95 backdrop-blur-sm'
+                          : 'bg-black/90 backdrop-blur-sm border border-white/20'
+                      }`}>
+                        <div className="flex flex-col lg:grid grid-cols-2 gap-4">
+                          <div className="flex flex-col h-full justify-between">
+                            <div className="flex flex-col">
+                              <p className={`text-base font-semibold ${
+                                isScrolled ? 'text-foreground' : 'text-white'
+                              }`}>{item.title}</p>
+                              <p className={`text-sm ${
+                                isScrolled ? 'text-muted-foreground' : 'text-white/70'
+                              }`}>
+                                {item.description}
+                              </p>
+                            </div>
+                            <Button size="sm" className={`mt-6 transition-colors duration-300 ${
+                              item.title === 'Por que Combinat?'
+                                ? 'bg-[#E9342E] hover:bg-[#E9342E]/90'
+                                : item.title === 'Soluções'
+                                  ? 'bg-[#FF9334] hover:bg-[#FF9334]/90'
+                                  : 'bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90'
+                            } text-white`}> 
+                              Agendar Conversa
+                            </Button>
+                          </div>
+                          <div className="flex flex-col text-sm h-full justify-end">
+                            {item.items?.map((subItem) => (
+                              <NavigationMenuLink
+                                href={subItem.href}
+                                key={subItem.title}
+                                className={`flex flex-row justify-between items-center py-2 px-4 rounded transition-colors ${
+                                  isScrolled 
+                                    ? 'hover:bg-muted text-foreground hover:text-[#E9342E]' 
+                                    : 'hover:bg-white/10 text-white hover:text-[#FF9334]'
+                                }`}
+                              >
+                                <span>{subItem.title}</span>
+                                <MoveRight className={`w-4 h-4 ${
+                                  isScrolled ? 'text-muted-foreground' : 'text-white/70'
+                                }`} />
+                              </NavigationMenuLink>
+                            ))}
+                          </div>
+                        </div>
+                      </NavigationMenuContent>
+                    </>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>        {/* Logo */}
+        <div className="flex lg:justify-center justify-start">
+          <div className="flex items-center relative z-50">
+            <div className="relative w-auto h-8">
+              {/* Logo padrão (claro) */}
+              <img 
+                src="/combinat_primário_claro.svg" 
+                alt="Combinat" 
+                className={`h-8 w-auto transition-opacity duration-500 ${
+                  isScrolled ? 'opacity-0' : 'opacity-100'
+                }`}
+              />
+              {/* Logo com gradiente (aparece no scroll) */}
+              <img 
+                src="/combinat_gradiente.svg" 
+                alt="Combinat" 
+                className={`absolute top-0 left-0 h-8 w-auto transition-opacity duration-500 ${
+                  isScrolled ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
             </div>
-            <span className="ml-3 text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">Combinat</span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {navigationItems.map((item) => (
-              item.hasDropdown ? (
-                <DropdownMenu key={item.name}>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="flex items-center space-x-1 px-3 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50/80 rounded-md font-medium text-sm">
-                      {item.name}
-                      <ChevronDown className="w-4 h-4 ml-1 text-slate-400" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center" className="w-48 animate-in fade-in-80">
-                    {item.dropdownItems?.map((dropdownItem) => (
-                      <DropdownMenuItem key={dropdownItem.name} asChild>
-                        <a href={dropdownItem.href} className="cursor-pointer">
-                          {dropdownItem.name}
-                        </a>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="px-3 py-2 text-slate-700 hover:text-blue-600 hover:bg-blue-50/80 rounded-md transition-colors font-medium text-sm"
-                >
-                  {item.name}
-                </a>
-              )
-            ))}
-          </nav>          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" className="text-slate-600 hover:text-blue-600 hover:bg-blue-50/80 font-medium" asChild>
-              <Link to="/login">
-                Entrar
-              </Link>
-            </Button>
-            <Button className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300" asChild>
-              <Link to="/crm">
-                Começar Agora
-              </Link>
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-slate-700"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 top-20 bg-white/95 backdrop-blur-md z-40 overflow-y-auto animate-in slide-in-from-top duration-300">
-            <div className="px-4 py-5 space-y-1">
-              {navigationItems.map((item) => (
-                <div key={item.name} className="py-1">
-                  {item.hasDropdown ? (
-                    <div className="space-y-2">
-                      <div className="font-medium text-slate-900 py-3 border-b">
-                        {item.name}
-                      </div>
-                      <div className="ml-4 space-y-1">
-                        {item.dropdownItems?.map((dropdownItem) => (
-                          <a
-                            key={dropdownItem.name}
-                            href={dropdownItem.href}
-                            className="block py-2 px-3 text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {dropdownItem.name}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    <a
-                      href={item.href}
-                      className="block py-3 text-slate-800 font-medium hover:text-blue-600 transition-colors border-b"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  )}
-                </div>
-              ))}              <div className="pt-6 space-y-3">
-                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50" asChild>
-                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                    Entrar
-                  </Link>
+        {/* Desktop Actions */}
+        <div className="hidden md:grid grid-cols-[auto_auto_1px_auto_auto] justify-end w-full gap-4 items-center">
+          <Button 
+            variant="ghost" 
+            className={`bg-transparent hover:bg-transparent font-medium transition-colors duration-300 ${
+              isScrolled 
+                ? 'text-foreground hover:text-[#E9342E]' 
+                : 'text-white hover:text-[#FF9334]'
+            }`}
+          >
+            Contato
+          </Button>
+          <Button 
+            variant="ghost" 
+            className={`bg-transparent hover:bg-transparent font-medium transition-colors duration-300 ${
+              isScrolled 
+                ? 'text-foreground hover:text-[#E9342E]' 
+                : 'text-white hover:text-[#FF9334]'
+            }`}
+          >
+            Portal do Cliente
+          </Button>
+          <div className={`h-5 transition-colors duration-300 ${
+            isScrolled ? 'bg-border' : 'bg-white/30'
+          }`}></div>
+          <Button 
+            variant="outline" 
+            className={`transition-all duration-300 ${
+              isScrolled 
+                ? 'border-border text-foreground hover:bg-accent bg-transparent' 
+                : 'border-white/30 text-white hover:bg-white/10 hover:text-white bg-transparent'
+            }`}
+            asChild
+          >
+            <Link to="/login">Entrar</Link>
+          </Button>
+          <Button className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90 transition-all duration-300 hover:scale-105" asChild>
+            <Link to="/crm">Começar Agora</Link>
+          </Button>
+        </div>
+        
+        {/* Mobile Actions - shown only on mobile */}
+        <div className="flex md:hidden justify-end w-full gap-4">
+          <Button className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90 transition-all duration-300 hover:scale-105" asChild>
+            <Link to="/crm">Começar Agora</Link>
+          </Button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="flex w-12 shrink lg:hidden items-end justify-end">
+          <Button 
+            variant="ghost" 
+            onClick={() => setOpen(!isOpen)} 
+            className={`relative z-50 transition-colors duration-300 ${
+              isScrolled 
+                ? 'text-foreground hover:text-[#E9342E]' 
+                : 'text-white hover:text-[#FF9334]'
+            }`}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </Button>
+
+          {/* Mobile Menu */}
+          {isOpen && (
+            <div className={`absolute top-20 left-0 border-t flex flex-col w-full shadow-lg py-4 px-4 gap-6 z-40 transition-all duration-300 ${
+              isScrolled 
+                ? 'bg-background/95 backdrop-blur-sm border-border/40' 
+                : 'bg-black/90 backdrop-blur-sm border-white/20'
+            }`}>
+              <Accordion type="single" collapsible className="w-full">
+                {navigationItems.map((item, index) => (
+                  <div key={item.title}>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className={`flex justify-between items-center py-3 text-lg font-medium transition-colors ${
+                          isScrolled 
+                            ? 'text-foreground hover:text-[#E9342E]' 
+                            : 'text-white hover:text-[#FF9334]'
+                        }`}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span>{item.title}</span>
+                        <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
+                      </a>
+                    ) : (
+                      <AccordionItem value={`item-${index}`} className="border-none">
+                        <AccordionTrigger className={`text-lg font-medium hover:no-underline py-3 transition-colors ${
+                          isScrolled 
+                            ? 'text-foreground hover:text-[#E9342E]' 
+                            : 'text-white hover:text-[#FF9334]'
+                        }`}>
+                          {item.title}
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-2">
+                          <div className="flex flex-col gap-2 pl-4">
+                            {item.items?.map((subItem) => (
+                              <a
+                                key={subItem.title}
+                                href={subItem.href}
+                                className={`flex justify-between items-center py-2 transition-colors ${
+                                  isScrolled 
+                                    ? 'text-muted-foreground hover:text-foreground' 
+                                    : 'text-white/70 hover:text-white'
+                                }`}
+                                onClick={() => setOpen(false)}
+                              >
+                                <span>{subItem.title}</span>
+                                <MoveRight className="w-4 h-4 stroke-1" />
+                              </a>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    )}
+                  </div>
+                ))}
+              </Accordion>
+              
+              {/* Mobile Actions */}
+              <div className={`flex flex-col gap-4 pt-4 border-t ${
+                isScrolled ? 'border-border' : 'border-white/20'
+              }`}>
+                <Button variant="outline" className={`w-full ${
+                  isScrolled 
+                    ? 'border-border text-foreground bg-transparent hover:bg-accent' 
+                    : 'border-white/30 text-white bg-transparent hover:bg-white/10'
+                }`}>
+                  Contato
                 </Button>
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white" asChild>
-                  <Link to="/crm" onClick={() => setIsMenuOpen(false)}>
-                    Começar Agora
-                  </Link>
+                <Button variant="outline" className={`w-full ${
+                  isScrolled 
+                    ? 'border-border text-foreground bg-transparent hover:bg-accent' 
+                    : 'border-white/30 text-white bg-transparent hover:bg-white/10'
+                }`}>
+                  Portal do Cliente
+                </Button>
+                <Button variant="outline" className={`w-full ${
+                  isScrolled 
+                    ? 'border-border text-foreground bg-transparent hover:bg-accent' 
+                    : 'border-white/30 text-white bg-transparent hover:bg-white/10'
+                }`} asChild>
+                  <Link to="/login">Entrar</Link>
+                </Button>
+                <Button className="w-full bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90" asChild>
+                  <Link to="/crm">Começar Agora</Link>
                 </Button>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </header>
   );

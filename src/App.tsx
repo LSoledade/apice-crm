@@ -38,6 +38,9 @@ import Seguranca from "@/pages/configuracoes/Seguranca";
 
 // Importação do site da Combinat
 import CombinatSite from "@/pages/sitecombinat/CombinatSite";
+import LinkNaBio from "@/pages/sitecombinat/LinkNaBio";
+import Policies from "@/pages/sitecombinat/Policies";
+import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import { AnalyticsProvider } from "./contexts/AnalyticsContext";
 
@@ -55,13 +58,14 @@ const App = () => (
       <AnalyticsProvider
         measurementId={ANALYTICS_ID}
         disabled={DISABLE_ANALYTICS}>
-        <AuthProvider>
-          <BrowserRouter>
+        <AuthProvider>          <BrowserRouter>
             {/* Componente de rastreamento do Google Analytics */}
-            <GoogleAnalytics />
-            <Routes>
-              {/* Site da Combinat como página principal */}
+            <GoogleAnalytics />            {/* Cookie Consent Banner */}
+            <CookieConsent />
+            <Routes>{/* Site da Combinat como página principal */}
               <Route path="/" element={<CombinatSite />} />
+              <Route path="/link" element={<LinkNaBio />} />
+              <Route path="/policies" element={<Policies />} />
               <Route path="/login" element={<Login />} />
               
               {/* Landing page do CRM movida para /crm */}

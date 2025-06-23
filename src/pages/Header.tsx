@@ -1,17 +1,24 @@
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import CombinatHeader from '@/pages/sitecombinat/components/CombinatHeader';
 import { Button } from '@/components/ui/button';
 import { Bell, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 interface HeaderProps {
   sidebarCollapsed?: boolean;
+  isLandingPage?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ sidebarCollapsed = false }) => {
+const Header: React.FC<HeaderProps> = ({ sidebarCollapsed = false, isLandingPage = false }) => {
   const { user } = useAuth();
+  // Se for uma landing page, use o header da Combinat
+  if (isLandingPage) {
+    return <CombinatHeader />;
+  }
 
+  // Caso contrário, use o header do CRM (dashboard interno)
   return (
     <header className={`bg-white/95 backdrop-blur-sm shadow-sm px-6 py-3 fixed top-0 right-0 left-0 ${sidebarCollapsed ? 'ml-16' : 'ml-64'} z-20 transition-all duration-300`}>
       <div className="flex items-center justify-between">
@@ -38,8 +45,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarCollapsed = false }) => {
 
           {/* Data e Boas-vindas */}
           <div className="text-right hidden sm:block">
-            <p className="text-sm font-medium text-gray-900">Olá, {user?.username}</p>
-            <p className="text-xs text-gray-500">{new Date().toLocaleDateString('pt-BR', {weekday: 'long', day: 'numeric', month: 'long'})}</p>
+            <p className="text-sm font-medium text-gray-900">Olá, {user?.username}</p>            <p className="text-xs text-gray-500">{new Date().toLocaleDateString('pt-BR', {weekday: 'long', day: 'numeric', month: 'long'})}</p>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -9,8 +10,7 @@ export default {
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
 	],
-	prefix: "",
-	theme: {
+	prefix: "",	theme: {
 		container: {
 			center: true,
 			padding: '2rem',
@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				outfit: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -124,6 +128,5 @@ export default {
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			}
 		}
-	},
-	plugins: [require("tailwindcss-animate")],
+	},	plugins: [tailwindcssAnimate],
 } satisfies Config;
