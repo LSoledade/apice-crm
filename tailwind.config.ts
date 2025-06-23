@@ -66,14 +66,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				// Cores customizadas para o CRM
+				},				// Cores customizadas para o CRM
 				'crm-primary': '#2563eb',
 				'crm-secondary': '#8b5cf6',
 				'crm-accent': '#06b6d4',
 				'crm-success': '#10b981',
 				'crm-warning': '#f59e0b',
 				'crm-error': '#ef4444',
+				// Cores da marca Combinat
+				'combinat-primary': '#E9342E',
+				'combinat-secondary': '#FF9334',
+				'combinat-neutral': '#303030',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

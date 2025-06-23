@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -184,8 +183,35 @@
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #E9342E 0%, #FF9334 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Container principal com visual moderno inspirado no Gmail - Cores Combinat */
+.crm-main-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(233, 52, 46, 0.1);
+  box-shadow: 
+    0 10px 25px -5px rgba(233, 52, 46, 0.1),
+    0 20px 40px -15px rgba(233, 52, 46, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.crm-main-container:hover {
+  box-shadow: 
+    0 15px 35px -5px rgba(233, 52, 46, 0.15),
+    0 25px 50px -15px rgba(233, 52, 46, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Background gradiente suave com cores da Combinat */
+.crm-background {
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(233, 52, 46, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 147, 52, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #f0f0f0 100%);
 }
