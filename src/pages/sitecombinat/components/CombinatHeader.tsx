@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import { Menu, MoveRight, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const CombinatHeader = () => {
   const [isOpen, setOpen] = useState(false);
@@ -45,54 +46,54 @@ const CombinatHeader = () => {
   }, [isScrolled]);
 
   const navigationItems = [
-    {
-      title: "Home",
-      href: "#home",
-      description: "",
-    },
+    // {
+    //   title: "Home",
+    //   href: "#home",
+    //   description: "",
+    // },
     {
       title: "Por que Combinat?",
-      description: "Conheça nossos diferenciais e metodologias.",
-      items: [
-        {
-          title: "Nossa História",
-          href: "#historia",
-        },
-        {
-          title: "Metodologia",
-          href: "#metodologia",
-        },
-        {
-          title: "Resultados",
-          href: "#resultados",
-        },
-        {
-          title: "Depoimentos",
-          href: "#depoimentos",
-        },
-      ],
+      // description: "Conheça nossos diferenciais e metodologias.",
+      // items: [
+      //   {
+      //     title: "Nossa História",
+      //     href: "#historia",
+      //   },
+      //   {
+      //     title: "Metodologia",
+      //     href: "#metodologia",
+      //   },
+      //   {
+      //     title: "Resultados",
+      //     href: "#resultados",
+      //   },
+      //   {
+      //     title: "Depoimentos",
+      //     href: "#depoimentos",
+      //   },
+      // ],
     },
     {
       title: "Soluções",
-      description: "Tecnologia e marketing para transformar seu negócio.",
-      items: [
-        {
-          title: "Marketing Digital",
-          href: "#marketing-digital",
-        },
-        {
-          title: "Desenvolvimento Web",
-          href: "#desenvolvimento",
-        },
-        {
-          title: "CRM & Automação",
-          href: "#crm-automacao",
-        },
-        {
-          title: "Consultoria",
-          href: "#consultoria",
-        },
-      ],
+      // description: "Tecnologia e marketing para transformar seu negócio.",
+      // items: [
+      //   {
+      //     title: "Marketing Digital",
+      //     href: "#marketing-digital",
+      //   },
+      //   {
+      //     title: "Desenvolvimento Web",
+      //     href: "#desenvolvimento",
+      //   },
+      //   {
+      //     title: "CRM & Automação",
+      //     href: "#crm-automacao",
+      //   },
+      //   {
+      //     title: "Consultoria",
+      //     href: "#consultoria",
+      //   },
+      // ],
     },
     {
       title: "Equipe",
@@ -107,7 +108,7 @@ const CombinatHeader = () => {
     }`}>
       <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center px-4 md:px-6 justify-between lg:justify-normal">
         {/* Desktop Navigation */}        <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
-          <NavigationMenu className="flex justify-start items-start">
+          {/* <NavigationMenu className="flex justify-start items-start">
             <NavigationMenuList className="flex justify-start gap-4 flex-row">
               {navigationItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
@@ -191,11 +192,51 @@ const CombinatHeader = () => {
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
-          </NavigationMenu>
+          </NavigationMenu> */}
+          <div className="flex justify-start items-start gap-4">
+            <a href="#porque-combinat">
+              <Button 
+                variant="ghost"
+                className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors duration-300 ${
+                  isScrolled 
+                    ? 'text-foreground hover:text-[#E9342E]' 
+                    : 'text-white hover:text-[#FF9334]'
+                }`}
+              >
+                Por que a Combinat?
+              </Button>
+            </a>
+
+            <a href="#solucoes">
+              <Button 
+                variant="ghost"
+                className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors duration-300 ${
+                  isScrolled 
+                    ? 'text-foreground hover:text-[#E9342E]' 
+                    : 'text-white hover:text-[#FF9334]'
+                }`}
+              >
+                Soluções
+              </Button>
+            </a>
+
+            <a href="#contato">
+              <Button 
+                variant="ghost"
+                className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors duration-300 ${
+                  isScrolled 
+                    ? 'text-foreground hover:text-[#E9342E]' 
+                    : 'text-white hover:text-[#FF9334]'
+                }`}
+              >
+                Equipe
+              </Button>
+            </a>
+          </div>
         </div>        {/* Logo */}
         <div className="flex lg:justify-center justify-start">
           <div className="flex items-center relative z-50">
-            <div className="relative w-auto h-8">
+            <a href="/" className="relative w-auto h-8">
               {/* Logo padrão (claro) */}
               <img 
                 src="/combinat_primário_claro.svg" 
@@ -206,19 +247,32 @@ const CombinatHeader = () => {
               />
               {/* Logo com gradiente (aparece no scroll) */}
               <img 
-                src="/combinat_gradiente.svg" 
+                src="/combinat_gradiente.svg"
                 alt="Combinat" 
                 className={`absolute top-0 left-0 h-8 w-auto transition-opacity duration-500 ${
                   isScrolled ? 'opacity-100' : 'opacity-0'
                 }`}
               />
-            </div>
+            </a>
           </div>
         </div>
 
         {/* Desktop Actions */}
         <div className="hidden md:grid grid-cols-[auto_auto_1px_auto_auto] justify-end w-full gap-4 items-center">
-          <Button 
+           <a
+            href="https://wa.me/5511999999999" // Substitua pelo seu número com DDI
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center gap-2 bg-transparent hover:bg-transparent font-medium transition-colors duration-300 ${
+              isScrolled 
+                ? 'text-foreground hover:text-[#E9342E]' 
+                : 'text-[#FF9334] hover:text-[#FF9334]'
+            }`}
+          >
+            <FaWhatsapp className="text-xl text-inherit" />
+            Contato
+          </a>
+          {/* <Button 
             variant="ghost" 
             className={`bg-transparent hover:bg-transparent font-medium transition-colors duration-300 ${
               isScrolled 
@@ -227,8 +281,8 @@ const CombinatHeader = () => {
             }`}
           >
             Contato
-          </Button>
-          <Button 
+          </Button> */}
+          {/* <Button 
             variant="ghost" 
             className={`bg-transparent hover:bg-transparent font-medium transition-colors duration-300 ${
               isScrolled 
@@ -254,7 +308,7 @@ const CombinatHeader = () => {
           </Button>
           <Button className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90 transition-all duration-300 hover:scale-105" asChild>
             <Link to="/crm">Começar Agora</Link>
-          </Button>
+          </Button> */}
         </div>
         
         {/* Mobile Actions - shown only on mobile */}
@@ -311,7 +365,7 @@ const CombinatHeader = () => {
                           {item.title}
                         </AccordionTrigger>
                         <AccordionContent className="pb-2">
-                          <div className="flex flex-col gap-2 pl-4">
+                          {/* <div className="flex flex-col gap-2 pl-4">
                             {item.items?.map((subItem) => (
                               <a
                                 key={subItem.title}
@@ -327,7 +381,7 @@ const CombinatHeader = () => {
                                 <MoveRight className="w-4 h-4 stroke-1" />
                               </a>
                             ))}
-                          </div>
+                          </div> */}
                         </AccordionContent>
                       </AccordionItem>
                     )}
@@ -346,7 +400,7 @@ const CombinatHeader = () => {
                 }`}>
                   Contato
                 </Button>
-                <Button variant="outline" className={`w-full ${
+                {/* <Button variant="outline" className={`w-full ${
                   isScrolled 
                     ? 'border-border text-foreground bg-transparent hover:bg-accent' 
                     : 'border-white/30 text-white bg-transparent hover:bg-white/10'
@@ -362,7 +416,7 @@ const CombinatHeader = () => {
                 </Button>
                 <Button className="w-full bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90" asChild>
                   <Link to="/crm">Começar Agora</Link>
-                </Button>
+                </Button> */}
               </div>
             </div>
           )}

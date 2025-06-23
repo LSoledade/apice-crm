@@ -190,7 +190,7 @@ const Solucoes = () => {
             </div>
           </div>
         </div>        {/* CTA Section com Glow Effect */}
-        <div className="relative rounded-3xl border-[0.75px] border-border p-3">
+        {/* <div className="relative rounded-3xl border-[0.75px] border-border p-3">
           <GlowingEffect
             spread={80}
             glow={true}
@@ -198,7 +198,7 @@ const Solucoes = () => {
             proximity={100}
             inactiveZone={0.2}
             borderWidth={3}
-          />          {/* Background overlay pattern */}
+          />          {/* Background overlay pattern 
           <div className="absolute inset-3 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIwLjUiPjxwYXRoIGQ9Ik0zMCAwdjYwTTYwIDMwSDBNMzAgNjAuMWwtMzAtMzBNMzAgLjFsMzAgMzAiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-10 rounded-3xl"></div>
             <div className="relative bg-gradient-to-br from-[#E9342E] via-[#E9342E]/90 to-[#FF9334] rounded-3xl p-8 md:p-12 lg:p-16 text-center text-white overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-[#FF9334]/30 rounded-full mix-blend-overlay filter blur-3xl"></div>
@@ -228,7 +228,7 @@ const Solucoes = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>    </section>  );
 };
 
