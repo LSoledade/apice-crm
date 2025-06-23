@@ -220,7 +220,7 @@ const CombinatHeader = () => {
               </Button>
             </a>
 
-            <a href="#contato">
+            <a href="#equipe">
               <Button 
                 variant="ghost"
                 className={`bg-transparent hover:bg-transparent text-sm font-medium transition-colors duration-300 ${
@@ -312,11 +312,11 @@ const CombinatHeader = () => {
         </div>
         
         {/* Mobile Actions - shown only on mobile */}
-        <div className="flex md:hidden justify-end w-full gap-4">
+        {/* <div className="flex md:hidden justify-end w-full gap-4">
           <Button className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] hover:from-[#E9342E]/90 hover:to-[#FF9334]/90 transition-all duration-300 hover:scale-105" asChild>
             <Link to="/crm">Começar Agora</Link>
           </Button>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Button */}
         <div className="flex w-12 shrink lg:hidden items-end justify-end">
@@ -339,67 +339,59 @@ const CombinatHeader = () => {
                 ? 'bg-background/95 backdrop-blur-sm border-border/40' 
                 : 'bg-black/90 backdrop-blur-sm border-white/20'
             }`}>
-              <Accordion type="single" collapsible className="w-full">
-                {navigationItems.map((item, index) => (
-                  <div key={item.title}>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className={`flex justify-between items-center py-3 text-lg font-medium transition-colors ${
-                          isScrolled 
-                            ? 'text-foreground hover:text-[#E9342E]' 
-                            : 'text-white hover:text-[#FF9334]'
-                        }`}
-                        onClick={() => setOpen(false)}
-                      >
-                        <span>{item.title}</span>
-                        <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
-                      </a>
-                    ) : (
-                      <AccordionItem value={`item-${index}`} className="border-none">
-                        <AccordionTrigger className={`text-lg font-medium hover:no-underline py-3 transition-colors ${
-                          isScrolled 
-                            ? 'text-foreground hover:text-[#E9342E]' 
-                            : 'text-white hover:text-[#FF9334]'
-                        }`}>
-                          {item.title}
-                        </AccordionTrigger>
-                        <AccordionContent className="pb-2">
-                          {/* <div className="flex flex-col gap-2 pl-4">
-                            {item.items?.map((subItem) => (
-                              <a
-                                key={subItem.title}
-                                href={subItem.href}
-                                className={`flex justify-between items-center py-2 transition-colors ${
-                                  isScrolled 
-                                    ? 'text-muted-foreground hover:text-foreground' 
-                                    : 'text-white/70 hover:text-white'
-                                }`}
-                                onClick={() => setOpen(false)}
-                              >
-                                <span>{subItem.title}</span>
-                                <MoveRight className="w-4 h-4 stroke-1" />
-                              </a>
-                            ))}
-                          </div> */}
-                        </AccordionContent>
-                      </AccordionItem>
-                    )}
-                  </div>
-                ))}
-              </Accordion>
+              <div className="w-full flex flex-col">
+                <a
+                  href="#porque-combinat"
+                  className={`py-3 text-lg font-medium transition-colors ${
+                    isScrolled
+                      ? 'text-foreground hover:text-[#E9342E]'
+                      : 'text-white hover:text-[#FF9334]'
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  Por que a Combinat?
+                </a>
+                <a
+                  href="#solucoes"
+                  className={`py-3 text-lg font-medium transition-colors ${
+                    isScrolled
+                      ? 'text-foreground hover:text-[#E9342E]'
+                      : 'text-white hover:text-[#FF9334]'
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  Soluções
+                </a>
+                <a
+                  href="#equipe"
+                  className={`py-3 text-lg font-medium transition-colors ${
+                    isScrolled
+                      ? 'text-foreground hover:text-[#E9342E]'
+                      : 'text-white hover:text-[#FF9334]'
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  Equipe
+                </a>
+              </div>
               
               {/* Mobile Actions */}
               <div className={`flex flex-col gap-4 pt-4 border-t ${
                 isScrolled ? 'border-border' : 'border-white/20'
               }`}>
-                <Button variant="outline" className={`w-full ${
-                  isScrolled 
-                    ? 'border-border text-foreground bg-transparent hover:bg-accent' 
-                    : 'border-white/30 text-white bg-transparent hover:bg-white/10'
-                }`}>
+                 <a
+                  href="https://wa.me/5511999999999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-center gap-2 w-full py-2 rounded-md text-sm font-medium transition-colors duration-300 bg-transparent ${
+                    isScrolled
+                      ? 'text-foreground hover:text-[#E9342E]'
+                      : 'text-[#FF9334] hover:text-[#FF9334]'
+                  }`}
+                >
+                  <FaWhatsapp className="text-xl text-inherit" />
                   Contato
-                </Button>
+                </a>
                 {/* <Button variant="outline" className={`w-full ${
                   isScrolled 
                     ? 'border-border text-foreground bg-transparent hover:bg-accent' 
