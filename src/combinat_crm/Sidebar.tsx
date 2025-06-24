@@ -40,6 +40,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const location = useLocation();
   const [openMenus, setOpenMenus] = useState<string[]>([]);
+  
   const toggleMenu = (href: string) => {
     setOpenMenus(current => 
       current.includes(href)
@@ -54,7 +55,8 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
       icon: BarChart3,
       href: '/dashboard',
       description: 'Visão geral'
-    },    {
+    },
+    {
       title: 'Marketing',
       icon: TrendingUp,
       href: '/marketing',
@@ -78,7 +80,8 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         { title: 'Agenda de Pagamentos', href: '/financeiro/agenda', icon: Calendar }
       ]
     },
-    {      title: 'Configurações',
+    {
+      title: 'Configurações',
       icon: Settings,
       href: '/configuracoes',
       description: 'Configurações',
@@ -94,30 +97,33 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   ];
 
   const isActive = (href: string) => location.pathname === href || location.pathname.startsWith(href + '/');
+  
   const renderMenuItem = (item: MenuItem) => {
     const active = isActive(item.href);
     const isOpen = openMenus.includes(item.href);
-      if (item.children) {
+    
+    if (item.children) {
       return (
         <div key={item.href}>
           <Collapsible 
             open={collapsed ? false : isOpen} 
             className="w-full"
-          >            <Link
+          >
+            <Link
               to={item.href}
               onClick={() => toggleMenu(item.href)}
               className={cn(
-                "flex items-center w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 mb-1 combinat-text",
+                "flex items-center w-full px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 mb-1",
                 active
-                  ? "bg-[#E9342E]/10 text-[#E9342E] shadow-sm border border-[#E9342E]/20"
-                  : "text-gray-600 hover:text-[#E9342E] hover:bg-gray-50"
+                  ? "bg-blue-50 text-blue-700 shadow-sm border border-blue-200"
+                  : "text-gray-600 hover:text-blue-700 hover:bg-gray-50"
               )}
             >
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <div className="flex items-center justify-center">
-                      <item.icon className={cn("h-5 w-5 transition-colors duration-200", active && "text-[#E9342E]")} />
+                      <item.icon className={cn("h-5 w-5 transition-colors duration-200", active && "text-blue-700")} />
                     </div>
                   </TooltipTrigger>
                   {collapsed && <TooltipContent side="right" sideOffset={5}>{item.title}</TooltipContent>}
@@ -143,10 +149,10 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                   key={child.href}
                   to={child.href}
                   className={cn(
-                    "flex items-center pl-8 pr-3 py-2 rounded-lg text-sm transition-all duration-200 combinat-text",
+                    "flex items-center pl-8 pr-3 py-2.5 rounded-lg text-sm transition-all duration-200",
                     isActive(child.href)
-                      ? "bg-[#FF9334]/10 text-[#FF9334] font-medium border-l-2 border-[#FF9334]"
-                      : "text-gray-500 hover:text-[#FF9334] hover:bg-gray-50"
+                      ? "bg-blue-100 text-blue-700 font-medium border-l-2 border-blue-600"
+                      : "text-gray-500 hover:text-blue-700 hover:bg-gray-50"
                   )}
                 >
                   <child.icon className="h-4 w-4 flex-shrink-0 mr-2" />
@@ -164,17 +170,17 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
         key={item.href}
         to={item.href}
         className={cn(
-          "flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 mb-1 combinat-text",
+          "flex items-center px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 mb-1",
           active
-            ? "bg-[#E9342E]/10 text-[#E9342E] shadow-sm border border-[#E9342E]/20"
-            : "text-gray-600 hover:text-[#E9342E] hover:bg-gray-50"
+            ? "bg-blue-50 text-blue-700 shadow-sm border border-blue-200"
+            : "text-gray-600 hover:text-blue-700 hover:bg-gray-50"
         )}
       >
         <TooltipProvider delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild>
               <div className="flex items-center justify-center">
-                <item.icon className={cn("h-5 w-5 transition-colors duration-200", active && "text-[#E9342E]")} />
+                <item.icon className={cn("h-5 w-5 transition-colors duration-200", active && "text-blue-700")} />
               </div>
             </TooltipTrigger>
             {collapsed && <TooltipContent side="right" sideOffset={5}>{item.title}</TooltipContent>}
@@ -194,16 +200,18 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     { title: 'Configurações da conta', icon: Settings, href: '/configuracoes-conta' },
     { title: 'Analytics', icon: BarChart3, href: '/analytics-usuario' },  
     { title: 'Sair', icon: LogOut, href: '/logout' }
-  ];  return (
+  ];
+
+  return (
     <div className={cn(
-      "bg-white border-r border-gray-200 h-full overflow-x-hidden shadow-lg transition-all duration-300 ease-in-out",
-      "grid grid-rows-[auto_auto_1fr_auto]", // CSS Grid: header, search, nav, user
+      "h-full overflow-x-hidden transition-all duration-300 ease-in-out flex flex-col",
+      "border-r border-gray-200"
     )}>
-      {/* Header */}
-      <div className="grid grid-cols-[1fr_auto] items-center gap-3 p-4 border-b border-gray-100">
+      {/* Header da Sidebar - altura fixa para alinhar com header principal */}
+      <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100 flex-shrink-0">
         <div className="flex items-center overflow-hidden min-w-0">
           <div className="relative flex items-center justify-center">
-            {/* Logo expandido - aparece quando a sidebar está expandida */}
+            {/* Logo expandido */}
             <img 
               src="/combinat_primário.svg" 
               alt="Combinat" 
@@ -213,7 +221,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
               )}
             />
             
-            {/* Logo reduzido - aparece quando a sidebar está colapsada */}
+            {/* Logo reduzido */}
             <img 
               src="/combinat_reduzido.svg" 
               alt="Combinat" 
@@ -229,50 +237,51 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
           variant="ghost"
           size="sm"
           onClick={onToggle}
-          className="p-2 text-gray-500 hover:text-[#E9342E] hover:bg-gray-50 transition-all duration-200 rounded-lg flex-shrink-0"
+          className="p-2 text-gray-500 hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 rounded-lg flex-shrink-0"
         >
           {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
       </div>
 
-      {/* Search */}
-      <div className="px-3 py-4">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Pesquisar..."
-            className={cn(
-              "w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-9 pr-3 text-sm text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-[#E9342E]/20 focus:border-[#E9342E] focus:outline-none transition-all duration-200",
-              collapsed && "opacity-0 pointer-events-none"
-            )}
-          />
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+      {/* Search - apenas quando expandida */}
+      {!collapsed && (
+        <div className="px-3 py-4 border-b border-gray-100">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Pesquisar..."
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-9 pr-3 text-sm text-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-all duration-200"
+            />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
           </div>
         </div>
-      </div>      {/* Navigation */}
-      <nav className="px-3 py-2 space-y-1 overflow-y-auto overflow-x-hidden scroll-container min-h-0 flex-1">
+      )}
+
+      {/* Navigation - área expansível */}
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
         {menuItems.map(renderMenuItem)}
       </nav>
 
-      {/* User profile */}
-      <div className="p-3 border-t border-gray-100 mt-auto">
+      {/* User profile - altura fixa na parte inferior */}
+      <div className="p-3 border-t border-gray-100 flex-shrink-0">
         <Collapsible>
           <CollapsibleTrigger asChild>
             <div className="flex items-center p-3 rounded-xl cursor-pointer hover:bg-gray-50 transition-all duration-200 border border-gray-100">
-              <Avatar className="h-9 w-9 border-2 border-[#E9342E]/20 flex-shrink-0">
+              <Avatar className="h-8 w-8 border-2 border-blue-500/20 flex-shrink-0">
                 <AvatarImage src="/user-avatar.png" />
-                <AvatarFallback className="bg-[#E9342E]/10 text-[#E9342E] combinat-cta text-sm">AC</AvatarFallback>
+                <AvatarFallback className="bg-blue-50 text-blue-700 text-sm font-medium">AC</AvatarFallback>
               </Avatar>
               
               <div className={cn(
                 "ml-3 flex-1 min-w-0 overflow-hidden transition-all duration-300 ease-in-out",
                 collapsed ? "w-0 opacity-0" : "w-auto opacity-100"
               )}>
-                <p className="combinat-text text-sm font-medium text-gray-800 truncate">Admin CRM</p>
-                <p className="combinat-text text-xs text-gray-500 truncate">admin@apice.com</p>
+                <p className="text-sm font-medium text-gray-800 truncate">Admin CRM</p>
+                <p className="text-xs text-gray-500 truncate">admin@apice.com</p>
               </div>
             </div>
           </CollapsibleTrigger>
@@ -283,7 +292,7 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                 <Link
                   key={item.title}
                   to={item.href}
-                  className="flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-white hover:text-[#E9342E] transition-all duration-200 combinat-text"
+                  className="flex items-center px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-white hover:text-blue-700 transition-all duration-200"
                 >
                   <item.icon className="h-4 w-4 mr-3 flex-shrink-0" />
                   {item.title}
