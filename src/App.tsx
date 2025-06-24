@@ -4,42 +4,42 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
-import Landing from "@/pages/Landing";
-import Login from "@/pages/Login";
-import Dashboard from "@/pages/Dashboard";
-import Layout from "@/pages/Layout";
-import ProtectedRoute from "@/pages/ProtectedRoute";
-import NotFound from "./pages/NotFound";
+import Landing from "@/combinat_crm/Landing";
+import Login from "@/combinat_crm/Login";
+import Dashboard from "@/combinat_crm/Dashboard";
+import Layout from "@/combinat_crm/Layout";
+import ProtectedRoute from "@/combinat_crm/ProtectedRoute";
+import NotFound from "./combinat_crm/NotFound";
 import { useEffect } from "react";
 import analyticsService from "./services/analyticsService";
 
 // Importação dos componentes de Marketing
-import Marketing from "@/pages/marketing/Marketing";
-import Analytics from "@/pages/marketing/Analytics";
-import Agenda from "@/pages/marketing/Agenda";
-import Leads from "@/pages/marketing/Leads";
-import Campanhas from "@/pages/marketing/Campanhas";
-import Mensagens from "@/pages/marketing/Mensagens";
+import Marketing from "@/combinat_crm/marketing/Marketing";
+import Analytics from "@/combinat_crm/marketing/Analytics";
+import Agenda from "@/combinat_crm/marketing/Agenda";
+import Leads from "@/combinat_crm/marketing/Leads";
+import Campanhas from "@/combinat_crm/marketing/Campanhas";
+import Mensagens from "@/combinat_crm/marketing/Mensagens";
 
 // Importação dos componentes do Financeiro
-import Financeiro from "@/pages/financeiro/Financeiro";
-import Faturamento from "@/pages/financeiro/Faturamento";
-import Pagamentos from "@/pages/financeiro/Pagamentos";
-import AgendaFinanceira from "@/pages/financeiro/AgendaFinanceira";
+import Financeiro from "@/combinat_crm/financeiro/Financeiro";
+import Faturamento from "@/combinat_crm/financeiro/Faturamento";
+import Pagamentos from "@/combinat_crm/financeiro/Pagamentos";
+import AgendaFinanceira from "@/combinat_crm/financeiro/AgendaFinanceira";
 
 // Importação dos componentes de Configurações
-import Configuracoes from "@/pages/configuracoes/Configuracoes";
-import ConfiguracoesGeral from "@/pages/configuracoes/Geral";
-import Usuarios from "@/pages/configuracoes/Usuarios";
-import Dominios from "@/pages/configuracoes/Dominios";
-import Integracoes from "@/pages/configuracoes/Integracoes";
-import Permissoes from "@/pages/configuracoes/Permissoes";
-import Seguranca from "@/pages/configuracoes/Seguranca";
+import Configuracoes from "@/combinat_crm/configuracoes/Configuracoes";
+import ConfiguracoesGeral from "@/combinat_crm/configuracoes/Geral";
+import Usuarios from "@/combinat_crm/configuracoes/Usuarios";
+import Dominios from "@/combinat_crm/configuracoes/Dominios";
+import Integracoes from "@/combinat_crm/configuracoes/Integracoes";
+import Permissoes from "@/combinat_crm/configuracoes/Permissoes";
+import Seguranca from "@/combinat_crm/configuracoes/Seguranca";
 
 // Importação do site da Combinat
-import CombinatSite from "@/pages/sitecombinat/CombinatSite";
-import LinkNaBio from "@/pages/sitecombinat/LinkNaBio";
-import Policies from "@/pages/sitecombinat/Policies";
+import CombinatSite from "@/combinat_site/CombinatSite";
+import LinkNaBio from "@/combinat_site/LinkNaBio";
+import Policies from "@/combinat_site/Policies";
 import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import { AnalyticsProvider } from "./contexts/AnalyticsContext";

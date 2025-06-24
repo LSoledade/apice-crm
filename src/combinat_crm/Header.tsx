@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import CombinatHeader from '@/pages/sitecombinat/components/CombinatHeader';
+import CombinatHeader from '@/combinat_site/components/CombinatHeader';
 import { Button } from '@/components/ui/button';
 import { Bell, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
