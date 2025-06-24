@@ -196,9 +196,8 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     { title: 'Sair', icon: LogOut, href: '/logout' }
   ];  return (
     <div className={cn(
-      "bg-white border-r border-gray-200 fixed left-0 top-0 h-screen transition-all duration-300 ease-in-out z-30 overflow-x-hidden shadow-lg",
+      "bg-white border-r border-gray-200 h-full overflow-x-hidden shadow-lg transition-all duration-300 ease-in-out",
       "grid grid-rows-[auto_auto_1fr_auto]", // CSS Grid: header, search, nav, user
-      collapsed ? "w-16" : "w-64"
     )}>
       {/* Header */}
       <div className="grid grid-cols-[1fr_auto] items-center gap-3 p-4 border-b border-gray-100">

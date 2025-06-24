@@ -7,19 +7,18 @@ import { Bell, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 interface HeaderProps {
-  sidebarCollapsed?: boolean;
   isLandingPage?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ sidebarCollapsed = false, isLandingPage = false }) => {
+const Header: React.FC<HeaderProps> = ({ isLandingPage = false }) => {
   const { user } = useAuth();
   // Se for uma landing page, use o header da Combinat
   if (isLandingPage) {
     return <CombinatHeader />;
   }  // Caso contrário, use o header do CRM (dashboard interno)
   return (
-    <header className={`bg-white/95 backdrop-blur-sm shadow-sm px-6 py-3 fixed top-0 right-0 left-0 ${sidebarCollapsed ? 'ml-16' : 'ml-64'} z-20 transition-all duration-300`}>
-      <div className="grid grid-cols-[1fr_auto] items-center gap-6 h-full">
+    <header className="px-6 h-full flex items-center">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-6 w-full">
         {/* Search Section */}
         <div className="flex-1 max-w-md">
           <div className="relative">

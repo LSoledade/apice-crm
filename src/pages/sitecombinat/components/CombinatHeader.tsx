@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -255,22 +256,22 @@ const CombinatHeader = () => {
               />
             </a>
           </div>
-        </div>
-
-        {/* Desktop Actions */}
-        <div className="hidden md:grid grid-cols-[auto_auto_1px_auto_auto] justify-end w-full gap-4 items-center">
+        </div>        {/* Desktop Actions */}
+        <div className="hidden md:flex justify-end w-full gap-4 items-center">
            <a
             href="https://wa.me/5511999999999" // Substitua pelo seu número com DDI
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-2 bg-transparent hover:bg-transparent font-medium transition-colors duration-300 ${
+            className={`group flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 hover:scale-105 ${
               isScrolled 
-                ? 'text-foreground hover:text-[#E9342E]' 
-                : 'text-[#FF9334] hover:text-[#FF9334]'
+                ? 'border-[#34D399]/30 bg-[#34D399] text-white hover:bg-[#10B981] hover:border-[#10B981]/50 hover:shadow-lg hover:shadow-[#34D399]/30' 
+                : 'border-white/20 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-white/40'
             }`}
           >
-            <FaWhatsapp className="text-xl text-inherit" />
-            Contato
+            <FaWhatsapp className={`text-lg transition-all duration-300 group-hover:scale-110 ${
+              isScrolled ? 'text-white' : 'text-[#25D366]'
+            }`} />
+            <span className="font-medium">Contato</span>
           </a>
           {/* <Button 
             variant="ghost" 
@@ -373,9 +374,7 @@ const CombinatHeader = () => {
                 >
                   Equipe
                 </a>
-              </div>
-              
-              {/* Mobile Actions */}
+              </div>                {/* Mobile Actions */}
               <div className={`flex flex-col gap-4 pt-4 border-t ${
                 isScrolled ? 'border-border' : 'border-white/20'
               }`}>
@@ -383,14 +382,16 @@ const CombinatHeader = () => {
                   href="https://wa.me/5511999999999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 w-full py-2 rounded-md text-sm font-medium transition-colors duration-300 bg-transparent ${
+                  className={`group flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full border font-medium transition-all duration-300 ${
                     isScrolled
-                      ? 'text-foreground hover:text-[#E9342E]'
-                      : 'text-[#FF9334] hover:text-[#FF9334]'
+                      ? 'border-[#34D399]/30 bg-[#34D399] text-white hover:bg-[#10B981] hover:border-[#10B981]/50'
+                      : 'border-white/20 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:border-white/40'
                   }`}
                 >
-                  <FaWhatsapp className="text-xl text-inherit" />
-                  Contato
+                  <FaWhatsapp className={`text-lg transition-all duration-300 group-hover:scale-110 ${
+                    isScrolled ? 'text-white' : 'text-[#25D366]'
+                  }`} />
+                  Fale Conosco
                 </a>
                 {/* <Button variant="outline" className={`w-full ${
                   isScrolled 

@@ -9,10 +9,9 @@ import {
 const CombinatFooter = () => {
   const currentYear = new Date().getFullYear();
   
-  return (
-    <footer className="bg-[#303030] text-white">
+  return (    <footer className="bg-[#303030] text-white">
       {/* Newsletter Section */}
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-6">        <div className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] rounded-2xl p-8 text-white text-center">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 pt-20 pb-16">        <div className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] rounded-2xl p-10 md:p-12 text-white text-center">
           <h2 className="combinat-title-md text-white mb-4">Insights que transformam</h2>
           <p className="combinat-text text-white/90 mb-6 max-w-lg mx-auto">
             Assine nossa newsletter e receba insights sobre tendências globais de tecnologia e marketing que impactam diretamente seu negócio
