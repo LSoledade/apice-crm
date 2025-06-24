@@ -229,8 +229,7 @@ const Mensagens = () => {
     
     return () => {
       if (interval) clearInterval(interval);
-    };  }, [isRecording]);  return (
-    <div className="h-[calc(100vh-5rem)] w-full flex flex-nowrap overflow-hidden rounded-xl">
+    };  }, [isRecording]);  return (    <div className="h-[calc(100vh-5rem)] w-full flex flex-nowrap rounded-xl">
       {/* Sidebar com tabs de plataformas e lista de chats */}
       <div className="h-full w-auto flex-shrink-0">
         <ChatSidebar 

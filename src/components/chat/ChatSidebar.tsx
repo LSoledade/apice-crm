@@ -1,5 +1,4 @@
 import { Filter, PlusCircle, Search } from "lucide-react";
-import { useState } from "react";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -36,8 +35,7 @@ const ChatSidebar = ({
   filterType,
   onFilterChange
 }: ChatSidebarProps) => {
-  return (
-    <div className="w-80 border-r flex flex-col bg-white h-full overflow-hidden">
+  return (    <div className="w-80 border-r flex flex-col bg-white h-full">
       <div className="p-3 border-b flex-shrink-0">
         <Tabs defaultValue={activeTab} onValueChange={onTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2">

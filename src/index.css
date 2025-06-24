@@ -215,3 +215,39 @@
     radial-gradient(circle at 75% 75%, rgba(255, 147, 52, 0.05) 0%, transparent 50%),
     linear-gradient(135deg, #fafafa 0%, #f5f5f5 50%, #f0f0f0 100%);
 }
+
+/* Estilos para garantir scroll adequado em sessões */
+.scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(233, 52, 46, 0.2);
+  border-radius: 3px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(233, 52, 46, 0.4);
+}
+
+/* Garantir que tabelas e listas longas tenham scroll */
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+/* Sessões específicas que precisam de scroll */
+.session-content {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}

@@ -252,10 +252,8 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             </svg>
           </div>
         </div>
-      </div>
-
-      {/* Navigation */}
-      <nav className="px-3 py-2 space-y-1 overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent min-h-0">
+      </div>      {/* Navigation */}
+      <nav className="px-3 py-2 space-y-1 overflow-y-auto overflow-x-hidden scroll-container min-h-0 flex-1">
         {menuItems.map(renderMenuItem)}
       </nav>
 
