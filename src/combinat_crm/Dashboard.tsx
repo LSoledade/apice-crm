@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import WeatherWidget from '@/components/WeatherWidget';
 import { 
   BarChart3, 
   TrendingUp, 
@@ -15,7 +14,7 @@ import {
   Activity,
   Plus
 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const Dashboard = () => {
   // Dados mockados para os gráficos
@@ -122,12 +121,10 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
-      </div>
-
-      {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      </div>      {/* Charts Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sales Chart */}
-        <Card className="lg:col-span-2 border-0 shadow-lg">
+        <Card className="border-0 shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center">
               <BarChart3 className="mr-2 h-5 w-5" />
@@ -149,17 +146,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Weather Widget */}
-        <WeatherWidget 
-          location="São Paulo" 
-          showForecast={true}
-          className="lg:col-span-1"
-        />
-      </div>
-
-      {/* Lead Sources Chart */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Lead Sources */}
+        {/* Lead Sources Chart */}
         <Card className="border-0 shadow-lg">
           <CardHeader>
             <CardTitle>Fontes de Leads</CardTitle>
@@ -185,21 +172,90 @@ const Dashboard = () => {
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
-          </CardContent>
-        </Card>
+          </CardContent>        </Card>
+      </div>
 
-        {/* Additional Chart placeholder - you can add more charts here */}
+      {/* Performance Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Performance Semanal */}
         <Card className="border-0 shadow-lg">
           <CardHeader>
             <CardTitle>Performance Semanal</CardTitle>
             <CardDescription>Tendência dos últimos 7 dias</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center justify-center h-[300px] text-muted-foreground">
-              <div className="text-center">
-                <BarChart3 className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                <p>Gráfico em desenvolvimento</p>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-600">127</div>
+                  <div className="text-sm text-gray-600">Novos Leads</div>
+                  <div className="text-xs text-green-600 mt-1">+12% vs semana anterior</div>
+                </div>
+                <div className="text-center p-4 bg-green-50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">31</div>
+                  <div className="text-sm text-gray-600">Conversões</div>
+                  <div className="text-xs text-green-600 mt-1">+8% vs semana anterior</div>
+                </div>
               </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-4 bg-purple-50 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-600">R$ 18.5k</div>
+                  <div className="text-sm text-gray-600">Faturamento</div>
+                  <div className="text-xs text-green-600 mt-1">+15% vs semana anterior</div>
+                </div>
+                <div className="text-center p-4 bg-orange-50 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-600">24.4%</div>
+                  <div className="text-sm text-gray-600">Taxa Conversão</div>
+                  <div className="text-xs text-green-600 mt-1">+2.1% vs semana anterior</div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Funil de Conversão */}
+        <Card className="border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle>Funil de Conversão</CardTitle>
+            <CardDescription>Pipeline de vendas atual</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                  <span className="text-sm">Leads</span>
+                </div>
+                <span className="text-sm font-medium">1,245</span>
+              </div>
+              <Progress value={100} className="h-2" />
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <span className="text-sm">Qualificados</span>
+                </div>
+                <span className="text-sm font-medium">623</span>
+              </div>
+              <Progress value={50} className="h-2" />
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                  <span className="text-sm">Propostas</span>
+                </div>
+                <span className="text-sm font-medium">187</span>
+              </div>
+              <Progress value={15} className="h-2" />
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span className="text-sm">Fechados</span>
+                </div>
+                <span className="text-sm font-medium">93</span>
+              </div>
+              <Progress value={7.5} className="h-2" />
             </div>
           </CardContent>
         </Card>
