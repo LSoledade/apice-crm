@@ -26,28 +26,30 @@ const Solucoes = () => {
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
   
-  // Soluções para o InteractiveSelector
+  // Soluções para o InteractiveSelector com dados estruturados para SEO
   const SOLUCOES_SLIDES = [
     {
-      id: "slide-1",
+      id: "sistemas-sob-medida",
       title: "Sistemas Sob Medida",
       description: "Sistemas e softwares personalizados",
       hoverDescription: "Criamos sistemas e softwares sob medida, da arquitetura à implementação, focados em performance, escalabilidade e nos seus objetivos de negócio.",
       services: ["APIs e microserviços", "Sistemas de gestão", "Arquitetura escalável"],
       imageUrl: "/crm-mockup.png",
-      icon: <CodeSquare size={24} className="text-white" />
+      icon: <CodeSquare size={24} className="text-white" />,
+      alt: "Interface do sistema CRM personalizado da Combinat mostrando dashboard de gestão"
     },
     {
-      id: "slide-2", 
+      id: "marketing-digital", 
       title: "Marketing Digital",
       description: "Estratégias digitais completas",
       hoverDescription: "Planejamos e executamos estratégias digitais completas, do SEO ao tráfego pago, para conectar sua marca ao público certo e gerar crescimento mensurável.",
       services: ["SEO técnico", "Tráfego pago", "Análise de performance"],
       imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      icon: <TrendingUp size={24} className="text-white" />
+      icon: <TrendingUp size={24} className="text-white" />,
+      alt: "Dashboard de analytics mostrando métricas de marketing digital e performance"
     },
     {
-      id: "slide-3",
+      id: "design-ui-ux",
       title: "UX/UI Design", 
       description: "Interfaces intuitivas e encantadoras",
       hoverDescription: "Desenhamos interfaces e experiências intuitivas que encantam usuários e otimizam a jornada do cliente, garantindo que a tecnologia seja fácil e eficaz de usar.",
@@ -68,7 +70,7 @@ const Solucoes = () => {
       id: "slide-5",
       title: "Inteligência Artificial",
       description: "IA personalizada para decisões estratégicas",
-      hoverDescription: "Implementamos soluções de inteligência artificial personalizadas que transformam dados em insights estratégicos, automatizam decisões complexas e potencializam seus resultados de negócio.",
+      hoverDescription: "Implementamos soluções de inteligência artificial personalizadas que transformam dados em insights, automatizam decisões complexas e potencializam seus resultados de negócio.",
       services: ["Análise preditiva", "Chatbots inteligentes", "Automação com IA"],
       imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       icon: <Brain size={24} className="text-white" />

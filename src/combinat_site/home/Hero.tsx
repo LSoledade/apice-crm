@@ -6,7 +6,7 @@ import { Typewriter } from '@/components/ui/typewriter';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative w-full min-h-screen overflow-hidden">
+    <section id="home" className="relative w-full min-h-screen overflow-hidden" role="banner" aria-label="Página inicial da Combinat">
       {/* Geometric Hero Background - Only shapes */}
       <div className="absolute inset-0">
         <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
@@ -129,6 +129,7 @@ const Hero = () => {
                       showCursor={true}
                       cursorChar="|"
                       cursorClassName="ml-1 text-[#FF9334]"
+                      aria-label="Texto dinâmico mostrando diferentes aspectos do negócio digital"
                     />
                   </span>
                 </h1>

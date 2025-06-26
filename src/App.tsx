@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { HelmetProvider } from "react-helmet-async";
 import Landing from "@/combinat_crm/Landing";
 import Login from "@/combinat_crm/Login";
 import Dashboard from "@/combinat_crm/Dashboard";
@@ -51,14 +52,15 @@ const ANALYTICS_ID = 'G-TH5T461VFJ';
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <AnalyticsProvider
-        measurementId={ANALYTICS_ID}
-        disabled={DISABLE_ANALYTICS}>
-        <AuthProvider>          <BrowserRouter>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <AnalyticsProvider
+          measurementId={ANALYTICS_ID}
+          disabled={DISABLE_ANALYTICS}>
+          <AuthProvider>          <BrowserRouter>
             {/* Componente de rastreamento do Google Analytics */}
             <GoogleAnalytics />            {/* Cookie Consent Banner */}
             <CookieConsent />
@@ -219,6 +221,7 @@ const App = () => (
       </AnalyticsProvider>
     </TooltipProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

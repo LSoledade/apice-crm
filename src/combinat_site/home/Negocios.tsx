@@ -34,21 +34,25 @@ const Negocios = () => {
   ];
 
   return (
-    <section className="py-12 bg-slate-50">
+    <section className="py-12 bg-slate-50" aria-labelledby="negocios-title">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Seção de tecnologias complementares com glow effect */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-              Tudo que seu <Typewriter
-                text={["negócio precisa", "sucesso exige", "avanço requer", "projeto merece"]}
-                className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] bg-clip-text text-transparent"
-                speed={70}
-                deleteSpeed={45}
-                waitTime={2000}
-                loop={true}
-              />
-            </h3>
+            <h2 id="negocios-title" className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+              <span className="block sm:inline">Tudo que seu</span>{" "}
+              <span className="block sm:inline">
+                <Typewriter
+                  text={["negócio precisa", "sucesso exige", "avanço requer", "projeto merece"]}
+                  className="bg-gradient-to-r from-[#E9342E] to-[#FF9334] bg-clip-text text-transparent"
+                  speed={70}
+                  deleteSpeed={45}
+                  waitTime={2000}
+                  loop={true}
+                  aria-label="Texto dinâmico destacando necessidades do negócio"
+                />
+              </span>
+            </h2>
             <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
               Soluções <span className="text-[#E9342E] font-semibold">completas</span> e <span className="text-[#FF9334] font-semibold">integradas</span> que unem desenvolvimento e marketing para entregar <span className="combinat-gradient-text font-semibold">resultados exponenciais</span>
             </p>
