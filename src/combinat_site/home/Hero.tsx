@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Typewriter } from '@/components/ui/typewriter';
 
 const Hero = () => {
   return (
@@ -111,13 +112,24 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.4 }}
-              >                <h1 className="combinat-title-xl leading-tight">
+              >
+                <h1 className="combinat-title-xl leading-tight">
                   <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 normal-case">
                     A melhor maneira de transformar seu
                   </span>
                   <br />
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#E9342E] to-[#FF9334] normal-case">
-                    negócio digital
+                    <Typewriter 
+                      text={["negócio digital", "ROI", "engajamento", "faturamento", "resultado digital", "potencial online"]}
+                      speed={100}
+                      initialDelay={1500}
+                      waitTime={3000}
+                      deleteSpeed={50}
+                      loop={true}
+                      showCursor={true}
+                      cursorChar="|"
+                      cursorClassName="ml-1 text-[#FF9334]"
+                    />
                   </span>
                 </h1>
               </motion.div>

@@ -4,6 +4,7 @@ import CombinatFooter from './components/CombinatFooter';
 import Hero from './home/Hero';
 import PorqueCombinat from './home/PorqueCombinat';
 import Solucoes from './home/Solucoes';
+import Negocios from './home/Negocios';
 import Equipe from './home/Equipe';
 
 const CombinatSite = () => {  return (
@@ -23,6 +24,11 @@ const CombinatSite = () => {  return (
         <div className="bg-slate-50 relative">
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-[#FF9334]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>
           <Solucoes />
+        </div>
+        
+        <div className="bg-slate-50 relative">
+          <div className="absolute top-20 right-20 w-72 h-72 bg-[#E9342E]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>
+          <Negocios />
         </div>
           <div className="bg-white relative">
           <div className="absolute top-10 right-10 w-64 h-64 bg-[#E9342E]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>          <div className="absolute bottom-40 left-20 w-72 h-72 bg-[#FF9334]/10 rounded-full mix-blend-multiply filter blur-3xl opacity-60 -z-10"></div>
