@@ -6,19 +6,10 @@ import { Typewriter } from '@/components/ui/typewriter';
 
 const Hero = () => {
   return (
-    <section 
-      id="home" 
-      className="relative w-full overflow-hidden" 
-      role="banner" 
-      aria-label="Página inicial da Combinat"
-      style={{ 
-        height: '100dvh',
-        minHeight: '100vh' // Fallback para navegadores que não suportam dvh
-      }}
-    >
+    <section id="home" className="relative w-full min-h-screen overflow-hidden" role="banner" aria-label="Página inicial da Combinat">
       {/* Geometric Hero Background - Only shapes */}
       <div className="absolute inset-0">
-        <div className="relative h-full w-full flex items-center justify-center overflow-hidden bg-[#030303]">
+        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
             {/* Geometric shapes */}
           <div className="absolute inset-0 overflow-hidden">
@@ -103,10 +94,10 @@ const Hero = () => {
       </div>
       
       {/* Main content with proper grid layout */}
-      <div className="relative z-10 h-full">
-        <div className="container mx-auto px-4 md:px-6 h-full">
+      <div className="relative z-10 min-h-screen">
+        <div className="container mx-auto px-4 md:px-6 h-screen">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full items-center">
-            <div className="col-span-1 lg:col-span-7 space-y-6 pb-16">              {/* Badge */}
+            <div className="col-span-1 lg:col-span-7 space-y-8">              {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -185,9 +176,9 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm animate-bounce">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30">
+        <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm animate-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
