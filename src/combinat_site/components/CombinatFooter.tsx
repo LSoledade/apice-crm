@@ -59,13 +59,15 @@ const CombinatFooter = () => {
             {/* Social Media */}
             <div className="flex space-x-3">
               {[
-                { icon: <Facebook className="h-4 w-4" />, label: "Facebook", href: "#" },
-                { icon: <Instagram className="h-4 w-4" />, label: "Instagram", href: "#" },
-                { icon: <Linkedin className="h-4 w-4" />, label: "LinkedIn", href: "#" }
+                { icon: <Facebook className="h-4 w-4" />, label: "Facebook", href: "https://facebook.com/combinat.digital" },
+                { icon: <Instagram className="h-4 w-4" />, label: "Instagram", href: "https://instagram.com/combinat.digital" },
+                { icon: <Linkedin className="h-4 w-4" />, label: "LinkedIn", href: "https://linkedin.com/company/combinat" }
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#E9342E] text-white hover:text-white flex items-center justify-center transition-all duration-300"
                   aria-label={social.label}
                 >
@@ -77,17 +79,17 @@ const CombinatFooter = () => {
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="combinat-subtitle-sm text-white">Soluções</h3>
+            <h3 className="combinat-subtitle-sm text-white">Navegação</h3>
             <ul className="space-y-3">
               {[
-                "Marketing Digital",
-                "Desenvolvimento Web",
-                "CRM & Automação",
-                "Consultoria"
+                { name: "Por que a Combinat?", href: "#porque-combinat" },
+                { name: "Soluções", href: "#solucoes" },
+                { name: "Equipe", href: "#equipe" },
+                { name: "CRM & Automação", href: "/crm" }
               ].map((item, idx) => (
                 <li key={idx}>
-                  <a href="#" className="combinat-text text-white/70 hover:text-[#FF9334] transition-colors">
-                    {item}
+                  <a href={item.href} className="combinat-text text-white/70 hover:text-[#FF9334] transition-colors">
+                    {item.name}
                   </a>
                 </li>
               ))}
@@ -122,8 +124,8 @@ const CombinatFooter = () => {
                   (11) 9999-9999
                 </a>
               </li>
-              <li className="flex items-start space-x-3">
-                <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mt-0.5">
+              <li className="flex items-center space-x-3">
+                <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
                   <MapPin className="h-4 w-4 text-white" />
                 </div>
                 <span className="combinat-text text-white/80">
@@ -154,13 +156,15 @@ const CombinatFooter = () => {
             {/* Social Media */}
             <div className="flex space-x-3">
               {[
-                { icon: <Facebook className="h-4 w-4" />, label: "Facebook", href: "#" },
-                { icon: <Instagram className="h-4 w-4" />, label: "Instagram", href: "#" },
-                { icon: <Linkedin className="h-4 w-4" />, label: "LinkedIn", href: "#" }
+                { icon: <Facebook className="h-4 w-4" />, label: "Facebook", href: "https://facebook.com/combinat.digital" },
+                { icon: <Instagram className="h-4 w-4" />, label: "Instagram", href: "https://instagram.com/combinat.digital" },
+                { icon: <Linkedin className="h-4 w-4" />, label: "LinkedIn", href: "https://linkedin.com/company/combinat" }
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#E9342E] text-white hover:text-white flex items-center justify-center transition-all duration-300"
                   aria-label={social.label}
                 >
@@ -175,19 +179,19 @@ const CombinatFooter = () => {
             {/* Services Accordion */}
             <AccordionItem value="services" className="border-white/20">
               <AccordionTrigger className="combinat-subtitle-sm text-white hover:text-[#FF9334] hover:no-underline">
-                Soluções
+                Navegação
               </AccordionTrigger>
               <AccordionContent>
                 <ul className="space-y-3 pb-2">
                   {[
-                    "Marketing Digital",
-                    "Desenvolvimento Web",
-                    "CRM & Automação",
-                    "Consultoria"
+                    { name: "Por que a Combinat?", href: "#porque-combinat" },
+                    { name: "Soluções", href: "#solucoes" },
+                    { name: "Equipe", href: "#equipe" },
+                    { name: "CRM & Automação", href: "/crm" }
                   ].map((item, idx) => (
                     <li key={idx}>
-                      <a href="#" className="combinat-text text-white/70 hover:text-[#FF9334] transition-colors block py-1">
-                        {item}
+                      <a href={item.href} className="combinat-text text-white/70 hover:text-[#FF9334] transition-colors block py-1">
+                        {item.name}
                       </a>
                     </li>
                   ))}
@@ -226,8 +230,8 @@ const CombinatFooter = () => {
                       (11) 9999-9999
                     </a>
                   </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center mt-0.5">
+                  <li className="flex items-center space-x-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
                       <MapPin className="h-4 w-4 text-white" />
                     </div>
                     <span className="combinat-text text-white/80">

@@ -6,10 +6,18 @@ import { Typewriter } from '@/components/ui/typewriter';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative w-full min-h-screen overflow-hidden" role="banner" aria-label="Página inicial da Combinat">
+    <section 
+      id="home" 
+      className="relative w-full overflow-hidden" 
+      role="banner" 
+      aria-label="Página inicial da Combinat"
+      style={{ 
+        height: '100dvh'
+      }}
+    >
       {/* Geometric Hero Background - Only shapes */}
       <div className="absolute inset-0">
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
+        <div className="relative h-full w-full flex items-center justify-center overflow-hidden bg-[#030303]">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
             {/* Geometric shapes */}
           <div className="absolute inset-0 overflow-hidden">

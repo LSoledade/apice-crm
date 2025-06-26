@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { cn } from "@/lib/utils";
 import { Zap, Target, Users, BarChart3, Shield, Lightbulb } from "lucide-react";
 
@@ -7,7 +8,6 @@ interface FeatureProps {
   title: string;
   description: string;
   icon: React.ReactNode;
-  index: number;
   iconClassName?: string;
 }
 
@@ -15,37 +15,25 @@ const Feature = ({
   title,
   description,
   icon,
-  index,
   iconClassName = "text-blue-500"
 }: FeatureProps) => {
   return (
-    <div
-      className={cn(
-        "flex flex-col lg:border-r py-8 relative group/feature border-neutral-200",
-        (index === 0 || index === 3) && "lg:border-l border-neutral-200",
-        index < 3 && "lg:border-b border-neutral-200"
-      )}
-    >
-      {index < 3 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-blue-50/50 to-transparent pointer-events-none" />
-      )}
-      {index >= 3 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-blue-50/50 to-transparent pointer-events-none" />
-      )}
-      <div className="mb-4 relative z-10 px-8">
-        <div className={cn("w-8 h-8", iconClassName)}>
-          {icon}
+    <div className="liquid-glass rounded-2xl p-6 group cursor-pointer transition-all duration-300 hover:scale-[1.02]">
+      <div className="flex items-start gap-4">
+        <div className={cn("flex-shrink-0 p-3 rounded-xl bg-white/15 backdrop-blur-sm border border-white/25 shadow-sm transition-all duration-300 group-hover:bg-white/25 group-hover:scale-105", iconClassName)}>
+          <div className="w-6 h-6">
+            {React.cloneElement(icon as React.ReactElement, { className: "w-6 h-6" })}
+          </div>
+        </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-semibold text-slate-900 mb-2 leading-tight drop-shadow-sm">
+            {title}
+          </h3>
+          <p className="text-sm text-slate-800 leading-relaxed drop-shadow-sm">
+            {description}
+          </p>
         </div>
       </div>
-      <div className="text-lg font-bold mb-3 relative z-10 px-8">
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-200 group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-slate-900">
-          {title}
-        </span>
-      </div>
-      <p className="text-sm text-slate-600 max-w-xs relative z-10 px-8 leading-relaxed">
-        {description}
-      </p>
     </div>
   );
 };
@@ -102,12 +90,14 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
   const features = cards || defaultFeatures;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 max-w-6xl mx-auto bg-white rounded-2xl shadow-sm border border-neutral-100">
-      {features.map((feature, index) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10 max-w-6xl mx-auto">
+      {features.map((feature) => (
         <Feature 
           key={feature.title} 
-          {...feature} 
-          index={index}
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          iconClassName={feature.iconClassName}
         />
       ))}
     </div>

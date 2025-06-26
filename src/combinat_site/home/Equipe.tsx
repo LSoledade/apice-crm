@@ -19,6 +19,10 @@ const Equipe = () => {
     .liquid-glass-card {
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
     
     .liquid-glass-card::before {
@@ -28,12 +32,24 @@ const Equipe = () => {
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
       transition: left 0.5s;
     }
     
     .liquid-glass-card:hover::before {
       left: 100%;
+    }
+    
+    .liquid-glass-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+      pointer-events: none;
+      border-radius: inherit;
     }
     
     .glass-orb {
@@ -46,7 +62,7 @@ const Equipe = () => {
       nome: "Alan Costa",
       cargo: "Co-fundador",
       bio: "Como pilar da excelência técnica, Alan usa seus 15 anos de experiência como desenvolvedor para garantir uma base tecnológica sólida, segura e de alta performance para o seu negócio.",
-      especialidades: ["Desenvolvimento Fullstack ", "Arquitetura de Software", "Sistemas Corporativos"],
+      especialidades: ["Desenvolvimento Fullstack", "Arquitetura de Software"],
       imagem: "/alan.jpg",
       social: {
         linkedin: "#",
@@ -57,21 +73,23 @@ const Equipe = () => {
       nome: "Leonardo Soledade",
       cargo: "Co-fundador",
       bio: "Como pilar do crescimento, Leonardo é especialista em marketing de performance e desenvolvimento front-end, criando estratégias focadas em resultados para conectar sua marca ao mercado.",
-      especialidades: ["Desenvolvimento Frontend", "Marketing Digital", "Otimização de ROI"],
+      especialidades: ["Desenvolvimento Frontend", "Marketing Digital"],
       imagem: "/leonardo.png", 
       social: {        
         linkedin: "#",
         site: "#"
       }
     }
-  ];  return (
+  ];
+
+  return (
     <section id="equipe" className="py-12" style={{ backgroundColor: '#303030' }}>
       {/* Inject custom styles */}
       <style dangerouslySetInnerHTML={{ __html: liquidGlassStyles }} />
       
       <div className="container mx-auto px-4 md:px-6 lg:px-8">        
         {/* Header Section */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
+        <div className="text-center max-w-4xl mx-auto mb-16"> 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             A força por trás da
           </h2>
@@ -90,23 +108,24 @@ const Equipe = () => {
           {fundadores.map((pessoa, index) => (
             <div 
               key={index} 
-              className="liquid-glass-card group relative overflow-hidden bg-gradient-to-br from-gray-800/60 via-gray-700/40 to-gray-600/30 backdrop-blur-xl rounded-3xl p-8 text-center border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10 hover:-translate-y-2"
+              className="liquid-glass-card group relative overflow-hidden rounded-3xl p-8 text-center border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/20 hover:-translate-y-2"
               style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+                WebkitBackdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
               }}
             >
               {/* Liquid Glass Overlay Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 via-transparent to-transparent rounded-3xl"></div>
-                <div className="glass-orb absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-orange-400/10 via-transparent to-transparent rounded-full blur-xl"></div>
-                <div className="glass-orb absolute -bottom-1/2 -right-1/2 w-3/4 h-3/4 bg-gradient-to-tl from-red-400/8 via-transparent to-transparent rounded-full blur-2xl" style={{ animationDelay: '2s' }}></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/8 via-transparent to-transparent rounded-3xl"></div>
+                <div className="glass-orb absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-orange-400/15 via-transparent to-transparent rounded-full blur-xl"></div>
+                <div className="glass-orb absolute -bottom-1/2 -right-1/2 w-3/4 h-3/4 bg-gradient-to-tl from-red-400/12 via-transparent to-transparent rounded-full blur-xl" style={{ animationDelay: '2s' }}></div>
               </div>
 
               {/* Animated Border Glow */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#E9342E]/20 via-[#FF9334]/20 to-[#E9342E]/20 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#E9342E]/15 via-[#FF9334]/15 to-[#E9342E]/15 animate-pulse"></div>
               </div>
 
               {/* Profile Image with Border */}
@@ -142,7 +161,7 @@ const Equipe = () => {
                 {pessoa.especialidades.map((especialidade, idx) => (
                   <span 
                     key={idx} 
-                    className="px-3 py-1 bg-gray-800/60 backdrop-blur-sm text-[#FF9334] rounded-full text-xs font-medium border border-white/10 hover:border-white/20 hover:bg-gray-700/60 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20"
+                    className="px-3 py-1 bg-white/10 backdrop-blur-sm text-[#FF9334] rounded-full text-xs font-medium border border-white/20 transition-all duration-300 hover:bg-white/15 hover:border-white/30"
                   >
                     {especialidade}
                   </span>
@@ -154,7 +173,7 @@ const Equipe = () => {
                 {pessoa.social.linkedin && (
                   <a 
                     href={pessoa.social.linkedin} 
-                    className="p-3 rounded-full bg-gray-800/40 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#FF9334] hover:border-white/20 hover:bg-gray-700/40 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20 hover:-translate-y-1" 
+                    className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 hover:text-[#FF9334] hover:border-white/30 hover:bg-white/15 transition-all duration-300 hover:-translate-y-1" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
@@ -164,7 +183,7 @@ const Equipe = () => {
                 {pessoa.social.site && (
                   <a 
                     href={pessoa.social.site} 
-                    className="p-3 rounded-full bg-gray-800/40 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#FF9334] hover:border-white/20 hover:bg-gray-700/40 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20 hover:-translate-y-1" 
+                    className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-gray-300 hover:text-[#FF9334] hover:border-white/30 hover:bg-white/15 transition-all duration-300 hover:-translate-y-1" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
